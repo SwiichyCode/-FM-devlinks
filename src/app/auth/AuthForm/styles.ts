@@ -50,3 +50,9 @@ export const PasswordInformations = styled.p`
   line-height: 1.8rem;
   color: var(--grey);
 `;
+
+export const AuthCardError = styled.p`
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: var(--red);
+`;

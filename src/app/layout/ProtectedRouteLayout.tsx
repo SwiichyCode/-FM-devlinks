@@ -12,7 +12,7 @@ export default function ProtectedRouteLayout({ children }: Props) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("user");
     if (!token) {
       if (pathname !== URL.LOGIN && pathname !== URL.SIGNUP) {
         router.push(URL.LOGIN);

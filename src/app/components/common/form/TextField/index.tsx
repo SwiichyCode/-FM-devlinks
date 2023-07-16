@@ -38,8 +38,6 @@ export default function TextField({
     setIsFocused(false);
   });
 
-  console.log(typeof formState.errors[name]);
-
   const handleErrorsMessages = () => {
     switch (formState.errors[name]?.type) {
       case "required":

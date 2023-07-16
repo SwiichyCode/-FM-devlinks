@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { URL } from "@/app/constants/url.constant";
+import AuthService from "@/app/auth/auth.service";
 import Logo from "@/app/components/common/Logo";
 import TextField from "@/app/components/common/form/TextField";
 import Button from "@/app/components/common/button/Button";
-import { URL } from "@/app/constants/url.constant";
 import * as S from "./styles";
 
 type Props = {
@@ -16,9 +19,36 @@ type Inputs = {
 };
 
 export default function AuthForm({ isLogin }: Props) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorApi, setErrorApi] = useState<string | null>(null);
   const methods = useForm<Inputs>();
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { email, password } = data;
+    setIsLoading(true);
+    let hasError = false;
+
+    try {
+      if (isLogin) {
+        await AuthService.login(email, password);
+        router.push(URL.HOME);
+
+        throw new Error("Error");
+      } else {
+        await AuthService.register(email, password);
+        router.push(URL.LOGIN);
+      }
+    } catch (error: any) {
+      setErrorApi(error?.response?.data?.error);
+      hasError = true;
+    } finally {
+      if (!hasError) {
+        methods.reset();
+      }
+      setIsLoading(false);
+    }
+  };
 
   return (
     <S.AuthFormWrapper>
@@ -73,15 +103,28 @@ export default function AuthForm({ isLogin }: Props) {
               />
             )}
 
-            {!isLogin && (
-              <S.PasswordInformations>
-                Password must contain at least 8 characters
-              </S.PasswordInformations>
+            {!isLogin &&
+              (errorApi ? (
+                <S.AuthCardError>{errorApi && errorApi}</S.AuthCardError>
+              ) : (
+                <S.PasswordInformations>
+                  Password must contain at least 8 characters
+                </S.PasswordInformations>
+              ))}
+
+            {isLogin && (
+              <S.AuthCardError>{errorApi && errorApi}</S.AuthCardError>
             )}
 
             <Button
               type="submit"
-              text={isLogin ? "Login" : "Create new account"}
+              text={
+                isLoading
+                  ? "Loading..."
+                  : isLogin
+                  ? "Login"
+                  : "Create new account"
+              }
             />
           </S.AuthCardForm>
         </FormProvider>
