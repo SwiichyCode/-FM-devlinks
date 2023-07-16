@@ -45,10 +45,13 @@ export const AuthCardLink = styled(Link)`
   color: var(--purple);
 `;
 
-export const PasswordInformations = styled.p`
+export const PasswordInformations = styled.p.withConfig({
+  shouldForwardProp: (prop) => !["isError"].includes(prop),
+})<{ isError?: string }>`
   font-size: 1.2rem;
   line-height: 1.8rem;
-  color: var(--grey);
+  color: ${({ isError }) =>
+    isError === "minLength" ? "var(--red)" : "var(--grey)"};
 `;
 
 export const AuthCardError = styled.p`

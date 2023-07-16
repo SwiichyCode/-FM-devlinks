@@ -86,7 +86,7 @@ export default function AuthForm({ isLogin }: Props) {
               type="password"
               name="password"
               rules={{
-                minLength: 8,
+                minLength: isLogin ? undefined : 8,
               }}
             />
 
@@ -107,7 +107,9 @@ export default function AuthForm({ isLogin }: Props) {
               (errorApi ? (
                 <S.AuthCardError>{errorApi && errorApi}</S.AuthCardError>
               ) : (
-                <S.PasswordInformations>
+                <S.PasswordInformations
+                  isError={methods.formState.errors.password?.type as string}
+                >
                   Password must contain at least 8 characters
                 </S.PasswordInformations>
               ))}
