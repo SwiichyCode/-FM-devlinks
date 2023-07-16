@@ -10,6 +10,7 @@ import * as S from "./styles";
 
 type Props = {
   isLogin: boolean;
+  urlRedirection: string;
 };
 
 type Inputs = {
@@ -18,7 +19,7 @@ type Inputs = {
   confirmPassword: string;
 };
 
-export default function AuthForm({ isLogin }: Props) {
+export default function AuthForm({ isLogin, urlRedirection }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorApi, setErrorApi] = useState<string | null>(null);
   const methods = useForm<Inputs>();
@@ -26,18 +27,16 @@ export default function AuthForm({ isLogin }: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
-    setIsLoading(true);
     let hasError = false;
+    setIsLoading(true);
 
     try {
       if (isLogin) {
         await AuthService.login(email, password);
-        router.push(URL.HOME);
-
-        throw new Error("Error");
+        router.push(urlRedirection);
       } else {
         await AuthService.register(email, password);
-        router.push(URL.LOGIN);
+        router.push(urlRedirection);
       }
     } catch (error: any) {
       setErrorApi(error?.response?.data?.error);
@@ -98,7 +97,7 @@ export default function AuthForm({ isLogin }: Props) {
                 type="password"
                 name="confirmPassword"
                 rules={{
-                  validate: (value) => value === methods.watch("password"),
+                  validate: (value) => value === methods.getValues("password"),
                 }}
               />
             )}
@@ -127,6 +126,7 @@ export default function AuthForm({ isLogin }: Props) {
                   ? "Login"
                   : "Create new account"
               }
+              disabled={isLoading}
             />
           </S.AuthCardForm>
         </FormProvider>

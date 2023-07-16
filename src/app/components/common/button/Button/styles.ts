@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const ButtonWrapper = styled.button`
+export const ButtonWrapper = styled.button.withConfig({
+  shouldForwardProp: (prop) => !["disabled"].includes(prop),
+})<{ disabled: boolean | undefined }>`
   width: 100%;
   font-size: 1.6rem;
   line-height: 2.4rem;
@@ -12,6 +14,7 @@ export const ButtonWrapper = styled.button`
   padding: 1.1rem 2.7rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  ${({ disabled }) => disabled && "opacity: 0.25;"}
 
   &:hover {
     background-color: var(--purple-500);
