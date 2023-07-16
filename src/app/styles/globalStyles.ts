@@ -5,12 +5,18 @@ import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
-    /* * {
+    * {
         box-sizing: border-box;
-    } */
+    }         
+
+    html {
+        font-size: 62.5%;
+
+    }
 
     body {
-       
+       background-color: var(--grey-300);
+       font-size: 1.6rem;
     }
 
     :root {
@@ -23,5 +29,9 @@ export const GlobalStyle = createGlobalStyle`
         --grey-300: #FAFAFA;
         --white: #FFFFFF;
         --red: #FF3939;
+
+
+        --rounded: 1.2rem;
+        --rounded-sm: 0.8rem;
     }
 `;

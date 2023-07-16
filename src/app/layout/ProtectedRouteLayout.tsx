@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { URL } from "@/app/constants/url.constant";
 
 type Props = {
@@ -9,11 +9,14 @@ type Props = {
 
 export default function ProtectedRouteLayout({ children }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      router.push(URL.LOGIN);
+      if (pathname !== URL.LOGIN && pathname !== URL.SIGNUP) {
+        router.push(URL.LOGIN);
+      }
     }
   }, [router]);
 

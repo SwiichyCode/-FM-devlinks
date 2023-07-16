@@ -1,3 +1,6 @@
+"use client";
+import AuthForm from "../AuthForm";
+
 export default function SignUp() {
-  return <div> SignUp </div>;
+  return <AuthForm isLogin={false} />;
 }
