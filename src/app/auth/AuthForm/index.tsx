@@ -132,11 +132,11 @@ export default function AuthForm({ isLogin }: Props) {
         </FormProvider>
         <S.AuthCardFooter>
           <S.AuthCardText>
-            {isLogin ? "Don’t have an account?" : "Already have an account?"}{" "}
-            <S.AuthCardLink href={isLogin ? URL.SIGNUP : URL.LOGIN}>
-              {isLogin ? "Create account" : "Login"}
-            </S.AuthCardLink>
+            {isLogin ? "Don’t have an account?" : "Already have an account?"}
           </S.AuthCardText>
+          <S.AuthCardLink href={isLogin ? URL.SIGNUP : URL.LOGIN}>
+            {isLogin ? "Create account" : "Login"}
+          </S.AuthCardLink>
         </S.AuthCardFooter>
       </S.AuthCard>
     </S.AuthFormWrapper>

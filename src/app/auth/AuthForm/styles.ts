@@ -1,17 +1,29 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { breakpoints } from "@/app/styles/breakpoints";
 
 export const AuthFormWrapper = styled.div`
+  width: 100%;
+  max-width: 476px;
   ${({ theme }) => theme.mixins.flexColumnItems};
   gap: 5.1rem;
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    align-items: flex-start;
+    gap: 7.1rem;
+  }
 `;
 
 export const AuthCard = styled.div`
-  width: 476px;
-  height: 482px;
+  width: 100%;
   background-color: var(--white);
   border-radius: var(--rounded);
   padding: 4rem;
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    background-color: transparent;
+    padding: 0;
+  }
 `;
 
 export const AuthCardHeader = styled.div`
@@ -37,12 +49,23 @@ export const AuthCardForm = styled.form`
 `;
 
 export const AuthCardFooter = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const AuthCardLink = styled(Link)`
   text-decoration: none;
   color: var(--purple);
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    line-height: 2.4rem;
+  }
 `;
 
 export const PasswordInformations = styled.p.withConfig({

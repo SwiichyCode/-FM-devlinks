@@ -1,6 +1,7 @@
 "use client";
 import type { Metadata } from "next";
 import styled from "styled-components";
+import { breakpoints } from "@/app/styles/breakpoints";
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -11,6 +12,12 @@ const AuthLayoutWrapper = styled.div`
   width: 100%;
   height: 100vh;
   ${({ theme }) => theme.mixins.flexCenter}
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 3.2rem;
+  }
 `;
 
 type Props = {
