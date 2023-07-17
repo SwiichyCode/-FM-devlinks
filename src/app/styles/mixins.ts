@@ -36,6 +36,11 @@ export const mixins = {
     align-items: center;
   `,
 
+  flexJustifyCenter: css`
+    display: flex;
+    justify-content: center;
+  `,
+
   flexBetween: css`
     display: flex;
     justify-content: space-between;

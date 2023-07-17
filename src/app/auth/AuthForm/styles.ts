@@ -4,9 +4,8 @@ import { breakpoints } from "@/app/styles/breakpoints";
 
 export const AuthFormWrapper = styled.div`
   width: 100%;
-  max-width: 476px;
+  max-width: 47.6rem;
   ${({ theme }) => theme.mixins.flexColumnItems};
-  gap: 5.1rem;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     align-items: flex-start;
@@ -42,15 +41,8 @@ export const AuthCardText = styled.p`
   color: var(--grey);
 `;
 
-export const AuthCardForm = styled.form`
-  ${({ theme }) => theme.mixins.flexColumn};
-  gap: 2.4rem;
-  margin: 4rem 0 2.4rem 0;
-`;
-
 export const AuthCardFooter = styled.div`
-  display: flex;
-  justify-content: center;
+  ${({ theme }) => theme.mixins.flexJustifyCenter};
   gap: 0.2rem;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
@@ -66,19 +58,4 @@ export const AuthCardLink = styled(Link)`
   @media screen and (max-width: ${breakpoints.mobile}) {
     line-height: 2.4rem;
   }
-`;
-
-export const PasswordInformations = styled.p.withConfig({
-  shouldForwardProp: (prop) => !["isError"].includes(prop),
-})<{ isError?: string }>`
-  font-size: 1.2rem;
-  line-height: 1.8rem;
-  color: ${({ isError }) =>
-    isError === "minLength" ? "var(--red)" : "var(--grey)"};
-`;
-
-export const AuthCardError = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.8rem;
-  color: var(--red);
 `;
