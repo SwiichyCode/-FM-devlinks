@@ -1,6 +1,6 @@
 import StyledComponentsRegistry from "@/app/lib/registry";
-import StyledLayout from "@/app/layout/StyledLayout";
-import ProtectedRouteLayout from "@/app/layout/ProtectedRouteLayout";
+import StyledLayout from "@/app/components/layout/StyledLayout";
+import ProtectedRouteLayout from "@/app/components/layout/ProtectedRouteLayout";
 import { GlobalStyle } from "@/app/styles/globalStyles";
 
 type Props = {

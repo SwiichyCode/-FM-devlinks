@@ -1,7 +1,7 @@
 "use client";
 import AuthForm from "../_components/AuthForm";
 import { URL } from "@/app/constants/url.constant";
-import { AUTH_TEXT } from "@/app/constants/auth.constant";
+import { AUTH_TEXT } from "@/app/(pages)/(auth)/_constant/auth.constant";
 
 export default function SignUp() {
   return (
@@ -12,8 +12,8 @@ export default function SignUp() {
       textLink={AUTH_TEXT.SIGNUP_TEXT_LINK}
       link={AUTH_TEXT.SIGNUP_LINK}
       linkText={AUTH_TEXT.SIGNUP_LINK_TEXT}
-      isLogin={false}
       urlRedirection={URL.LOGIN}
+      isLogin={false}
     />
   );
 }

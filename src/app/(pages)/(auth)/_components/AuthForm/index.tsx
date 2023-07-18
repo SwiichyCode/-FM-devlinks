@@ -7,7 +7,7 @@ type Props = {
   buttonLabel: string;
   textLink: string;
   link: string;
-  linkText?: string;
+  linkText: string;
   isLogin: boolean;
   urlRedirection: string;
 };

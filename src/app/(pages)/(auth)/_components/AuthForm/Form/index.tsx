@@ -58,7 +58,7 @@ export default function Form({ buttonLabel, isLogin, urlRedirection }: Props) {
           type="email"
           name="email"
           rules={{
-            required: "Can’t be empty",
+            required: true,
           }}
           errorMessage="Can’t be empty"
         />
@@ -98,7 +98,7 @@ export default function Form({ buttonLabel, isLogin, urlRedirection }: Props) {
             <S.PasswordInformations
               isError={methods.formState.errors.password?.type as string}
             >
-              Password must contain at least 8 characters
+              Password must be at least 8 characters long
             </S.PasswordInformations>
           ))}
 
