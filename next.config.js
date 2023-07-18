@@ -7,7 +7,22 @@ const nextConfig = {
         destination: "/home",
         permanent: true,
       },
+
+      {
+        source: "/home",
+        destination: "/home/links",
+        permanent: true,
+      },
     ];
+  },
+
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
   },
 };
 
