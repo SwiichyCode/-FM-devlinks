@@ -1,5 +1,5 @@
 export const URL = {
-  HOME: "/pages/home",
-  LOGIN: "/auth/login",
-  SIGNUP: "/auth/sign-up",
+  HOME: "/home",
+  LOGIN: "/login",
+  SIGNUP: "/sign-up",
 };

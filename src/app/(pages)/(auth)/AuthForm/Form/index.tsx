@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import AuthService from "@/app/auth/auth.service";
+import AuthService from "@/app/(pages)/(auth)/auth.service";
 import TextField from "@/app/components/common/form/TextField";
 import Button from "@/app/components/common/button/Button";
 import * as S from "./styles";
