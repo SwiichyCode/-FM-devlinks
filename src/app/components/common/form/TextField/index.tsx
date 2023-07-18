@@ -12,6 +12,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   iconSrc?: string;
   labelText: string;
   name: string;
+  errorMessage: string;
   rules?: Pick<
     RegisterOptions<FieldValues>,
     "maxLength" | "minLength" | "validate" | "required"
@@ -22,6 +23,7 @@ export default function TextField({
   iconSrc,
   labelText,
   name,
+  errorMessage,
   rules,
   ...props
 }: Props) {
@@ -38,19 +40,6 @@ export default function TextField({
     setIsFocused(false);
   });
 
-  const handleErrorsMessages = () => {
-    switch (formState.errors[name]?.type) {
-      case "required":
-        return "Can’t be empty";
-      case "minLength":
-        return "Please check again";
-      case "validate":
-        return "Password does not match";
-      default:
-        return "";
-    }
-  };
-
   return (
     <S.TextFieldContainer>
       <S.TextFieldLabel>{labelText}</S.TextFieldLabel>
@@ -66,9 +55,7 @@ export default function TextField({
         <S.TextFieldInput {...register?.(name, rules)} {...props} />
 
         {formState.errors[name] && (
-          <S.TextFieldError>
-            {handleErrorsMessages() as string}
-          </S.TextFieldError>
+          <S.TextFieldError>{errorMessage}</S.TextFieldError>
         )}
       </S.TextFieldWrapper>
     </S.TextFieldContainer>

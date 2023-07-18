@@ -1,5 +1,5 @@
 "use client";
-import AuthForm from "../AuthForm";
+import AuthForm from "../_components/AuthForm";
 import { URL } from "@/app/constants/url.constant";
 import { AUTH_TEXT } from "@/app/constants/auth.constant";
 
