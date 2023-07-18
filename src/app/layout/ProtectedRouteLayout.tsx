@@ -18,7 +18,7 @@ export default function ProtectedRouteLayout({ children }: Props) {
         router.push(URL.LOGIN);
       }
     }
-  }, [router]);
+  }, [pathname, router]);
 
   return <>{children}</>;
 }
