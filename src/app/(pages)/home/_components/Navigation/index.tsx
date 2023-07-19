@@ -1,3 +1,4 @@
+"use client";
 import { usePathname } from "next/navigation";
 import { URL } from "@/app/constants/url.constant";
 import LinkIcon from "/public/images/icon-link.svg";
@@ -11,14 +12,14 @@ export default function Navigation() {
     <S.NavigationWrapper>
       <S.NavigationLink
         href={URL.LINKS}
-        className={pathname === URL.LINKS ? "active" : undefined}
+        active={pathname === URL.LINKS ? true : false}
       >
         <LinkIcon />
         <span>Links</span>
       </S.NavigationLink>
       <S.NavigationLink
         href={URL.PROFILE}
-        className={pathname === URL.PROFILE ? "active" : undefined}
+        active={pathname === URL.PROFILE ? true : false}
       >
         <ProfileIcon />
         <span>Profile Details</span>

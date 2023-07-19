@@ -14,19 +14,6 @@ const LogoMobileWrapper = styled.div`
 export default function Logo({ size }: Props) {
   return (
     <>
-      {size === "mobile" && (
-        <LogoMobileWrapper>
-          <Link href="/">
-            <Image
-              src="/images/logo-devlinks-mobile.svg"
-              width={32}
-              height={32}
-              alt="logo"
-            />
-          </Link>
-        </LogoMobileWrapper>
-      )}
-
       {size === "small" && (
         <Link href="/">
           <Image
@@ -37,7 +24,6 @@ export default function Logo({ size }: Props) {
           />
         </Link>
       )}
-
       {size === "large" && (
         <Link href="/">
           <Image

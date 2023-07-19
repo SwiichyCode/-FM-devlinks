@@ -1,3 +1,4 @@
+"use client";
 import { useWindowSize } from "usehooks-ts";
 import Logo from "@/app/components/common/Logo";
 import Navigation from "../Navigation";

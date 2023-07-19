@@ -6,12 +6,15 @@ export const NavigationWrapper = styled.nav`
   ${({ theme }) => theme.mixins.flexAlignCenter};
 `;
 
-export const NavigationLink = styled(Link)`
+export const NavigationLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !["active"].includes(prop),
+})<{ active: boolean }>`
   ${({ theme }) => theme.mixins.flexAlignCenter};
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 2.4rem;
-  color: var(--grey);
+  color: ${({ active }) => (active ? "var(--purple)" : "var(--grey)")};
+  background-color: ${({ active }) => (active ? "var(--purple-300)" : "none")};
   border-radius: var(--rounded);
   text-decoration: none;
   padding: 1.1rem 2.7rem;
@@ -20,11 +23,6 @@ export const NavigationLink = styled(Link)`
 
   &:hover {
     color: var(--purple);
-  }
-
-  &.active {
-    color: var(--purple);
-    background-color: var(--purple-300);
   }
 
   @media screen and (max-width: ${breakpoints.tablet}) {
