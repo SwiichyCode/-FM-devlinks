@@ -31,6 +31,12 @@ export const mixins = {
     align-items: center;
   `,
 
+  flexColumnBetween: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+
   flexAlignCenter: css`
     display: flex;
     align-items: center;
@@ -45,5 +51,11 @@ export const mixins = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  `,
+
+  buttonReset: css`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   `,
 };

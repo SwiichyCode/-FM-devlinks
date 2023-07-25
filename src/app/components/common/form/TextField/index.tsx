@@ -10,13 +10,15 @@ import * as S from "./styles";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   iconSrc?: string;
-  labelText: string;
-  name: string;
-  errorMessage: string;
+  labelText?: string;
+  name?: string;
+  errorMessage?: string;
   rules?: Pick<
     RegisterOptions<FieldValues>,
     "maxLength" | "minLength" | "validate" | "required"
   >;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  useRegister?: boolean;
 }
 
 export default function TextField({
@@ -25,6 +27,8 @@ export default function TextField({
   name,
   errorMessage,
   rules,
+  onChange,
+  useRegister = true,
   ...props
 }: Props) {
   const { register, setFocus, formState } = useFormContext();
@@ -32,7 +36,7 @@ export default function TextField({
   const textFieldRef = useRef<HTMLDivElement>(null);
 
   const handleActiveInput = () => {
-    setFocus(name);
+    setFocus(name || "");
     setIsFocused(true);
   };
 
@@ -47,14 +51,18 @@ export default function TextField({
         ref={textFieldRef}
         onClick={handleActiveInput}
         isFocused={isFocused}
-        error={formState.errors[name] as FieldErrors}
+        error={formState.errors[name || ""] as FieldErrors}
       >
         {iconSrc && (
           <S.TextFieldIcon src={iconSrc} width={16} height={16} alt="" />
         )}
-        <S.TextFieldInput {...register?.(name, rules)} {...props} />
+        {useRegister ? (
+          <S.TextFieldInput {...register?.(name || "", rules)} {...props} />
+        ) : (
+          <S.TextFieldInput onChange={onChange} {...props} />
+        )}
 
-        {formState.errors[name] && (
+        {formState.errors[name || ""] && (
           <S.TextFieldError>{errorMessage}</S.TextFieldError>
         )}
       </S.TextFieldWrapper>

@@ -34,8 +34,13 @@ export const ButtonWrapper = styled.button.withConfig({
   ${({ disabled }) => disabled && "opacity: 0.25;"}
 
   &:hover {
-    background-color: ${({ theme }) =>
-      theme === "primary" ? "var(--purple-500)" : "var(--purple-300)"};
+    background-color: ${({ theme, disabled }) =>
+      disabled
+        ? null
+        : theme === "primary"
+        ? "var(--purple-500)"
+        : "var(--purple-300)"};
+
     box-shadow: ${({ theme }) =>
       theme === "primary" && "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"};
   }
