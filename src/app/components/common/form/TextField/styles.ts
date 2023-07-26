@@ -14,7 +14,7 @@ export const TextFieldLabel = styled.label`
 
 export const TextFieldWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !["isFocused", "error"].includes(prop),
-})<{ isFocused: boolean; error: FieldErrors }>`
+})<{ isFocused: boolean; error?: FieldErrors }>`
   width: 100%;
   display: flex;
   align-items: center;

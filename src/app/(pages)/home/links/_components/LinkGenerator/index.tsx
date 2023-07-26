@@ -1,25 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import cleanString from "@/app/utils/cleanString";
 import TextField from "@/app/components/common/form/TextField";
+import Select from "@/app/components/common/form/Select";
+import { options } from "./data";
 import * as S from "./styles";
-import { useCustomizeStore } from "@/app/(pages)/home/links/_stores/customize";
 
 type Props = {
   index: number;
   id: string;
-  updateLinkUrl: (index: number, url: string) => void; // Appeler updateLinkUrl lorsqu'une nouvelle url est entrée (dans le TextField
-  handleOptionChange: (index: number, name: string) => void;
+  links: {
+    name: string;
+    url: string;
+  }[];
+  updateLinkUrl: (index: number, url: string) => void;
+  updateOption: (index: number, name: string) => void;
   deleteLink: (id: string) => void;
 };
 
 export default function LinkGenerator({
   index,
   id,
+  links,
   updateLinkUrl,
-  handleOptionChange,
+  updateOption,
   deleteLink,
 }: Props) {
-  const [selectedOption, setSelectedOption] = useState("facebook");
-  const link = useCustomizeStore((state) => state.links[index]);
+  const { watch } = useFormContext();
+  const [selectedOption, setSelectedOption] = useState({
+    option: options[0].option,
+    icon: options[0].icon,
+  });
+
+  const availableOptions = options.filter(
+    (option) => !links.some((link) => link.name === option.option)
+  );
+
+  useEffect(() => {
+    updateOption(index, selectedOption.option);
+  }, [index, updateOption, selectedOption]);
+
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => {
+      updateLinkUrl(index, value[`platform_${id}`]);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <S.LinkGeneratorWrapper>
@@ -30,26 +57,18 @@ export default function LinkGenerator({
         </S.LinkGeneratorRemove>
       </S.LinkGeneratorHeader>
       <S.LinkGeneratorInputWrapper>
-        <select
-          value={selectedOption}
-          onChange={(e) => {
-            setSelectedOption(e.target.value);
-            handleOptionChange(index, e.target.value);
-          }}
-        >
-          <option value="facebook">Facebook</option>
-          <option value="twitter">Twitter</option>
-          <option value="instagram">Instagram</option>
-          <option value="linkedin">Linkedin</option>
-          <option value="github">Github</option>
-        </select>
+        <Select
+          labelText="Platform"
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          optionsList={availableOptions}
+        />
         <TextField
           labelText="Link"
-          placeholder="https://your-link.com"
-          name="url"
-          value={link.url}
-          onChange={(e) => updateLinkUrl(index, e.target.value)}
-          useRegister={false}
+          placeholder={`https://${cleanString(selectedOption.option)}.com`}
+          iconSrc="/images/icon-link.svg"
+          name={`platform_${id}`}
+          defaultValue={links[index].url}
         />
       </S.LinkGeneratorInputWrapper>
     </S.LinkGeneratorWrapper>

@@ -1,9 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useCustomizeStore } from "../../links/_stores/customize";
+import PreviewLink from "./PreviewLink";
 import * as S from "./styles";
 
 export default function Preview() {
   const [isLoading, setIsLoading] = useState(true);
+  const { links } = useCustomizeStore();
 
   // Fake loading
   useEffect(() => {
@@ -12,7 +15,7 @@ export default function Preview() {
         setIsLoading(false);
       }, 4000);
     }
-  }, []);
+  }, [isLoading]);
 
   return (
     <S.PreviewContainer>
@@ -25,8 +28,12 @@ export default function Preview() {
           </S.PreviewHeader>
 
           <S.PreviewLinks>
-            {[...Array(5)].map((_, index) => (
-              <S.SkeletonLink key={index} isLoading={isLoading} />
+            {links.map((link, index: number) => (
+              <PreviewLink key={index} link={link} isLoading={isLoading} />
+            ))}
+
+            {[...Array(5 - links.length)].map((_, index) => (
+              <S.SkeletonLink as={"li"} key={index} isLoading={isLoading} />
             ))}
           </S.PreviewLinks>
         </S.PreviewResult>

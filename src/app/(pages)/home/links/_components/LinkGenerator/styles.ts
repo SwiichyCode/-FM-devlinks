@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LinkGeneratorWrapper = styled.div`
+export const LinkGeneratorWrapper = styled.li`
   ${({ theme }) => theme.mixins.flexColumn};
   background-color: var(--grey-300);
   border-radius: var(--rounded);
@@ -25,4 +25,7 @@ export const LinkGeneratorRemove = styled.button`
   color: var(--grey);
 `;
 
-export const LinkGeneratorInputWrapper = styled.div``;
+export const LinkGeneratorInputWrapper = styled.div`
+  ${({ theme }) => theme.mixins.flexColumn};
+  gap: 1.2rem;
+`;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SkeletonAnimation = styled.div.withConfig({
   shouldForwardProp: (prop) => !["isLoading"].includes(prop),
-})<{ isLoading: boolean }>`
+})<{ isLoading?: boolean }>`
   background: ${({ isLoading }) =>
     isLoading
       ? `linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%)`

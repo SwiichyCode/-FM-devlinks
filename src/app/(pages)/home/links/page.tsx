@@ -1,11 +1,18 @@
-import Preview from "../_components/Preview";
-import Customize from "./_components/Customize";
+import dynamic from "next/dynamic";
+
+const DynamicPreview = dynamic(() => import("../_components/Preview"), {
+  ssr: false,
+});
+
+const DynamicCustomize = dynamic(() => import("./_components/Customize"), {
+  ssr: false,
+});
 
 export default function Links() {
   return (
     <>
-      <Preview />
-      <Customize />
+      <DynamicPreview />
+      <DynamicCustomize />
     </>
   );
 }

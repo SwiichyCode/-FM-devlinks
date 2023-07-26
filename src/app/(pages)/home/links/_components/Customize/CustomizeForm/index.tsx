@@ -2,17 +2,24 @@ import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { useCustomizeStore } from "../../../_stores/customize";
 import uuid from "@/app/utils/uuid";
 import Button from "@/app/components/common/button/Button";
-import EmptyForm from "./EmptyForm";
+import EmptyForm from "../EmptyForm";
 import LinkGenerator from "../../LinkGenerator";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
-  const { links, addLink, updateLinkUrl, handleOptionChange, deleteLink } =
+  const { links, addLink, updateLinkUrl, updateOption, deleteLink } =
     useCustomizeStore();
   const methods = useForm();
 
   const onsubmit: SubmitHandler<any> = (data) => {
-    console.log(links);
+    if (links.length === 0) return;
+
+    console.log("links", links);
+    console.log(data);
+  };
+
+  const handleAddLink = () => {
+    addLink({ id: uuid(), name: "", url: "" });
   };
 
   return (
@@ -22,7 +29,8 @@ export default function CustomizeForm() {
           type="button"
           text="+ Add new link"
           theme="secondary"
-          onClick={() => addLink({ id: uuid(), name: "", url: "" })}
+          onClick={links.length! < 5 ? handleAddLink : () => {}}
+          disabled={links.length! < 5 ? false : true}
         />
         {links.length > 0 ? (
           <S.LinksWrapper>
@@ -31,11 +39,10 @@ export default function CustomizeForm() {
                 key={index}
                 index={index}
                 id={id}
+                links={links}
                 updateLinkUrl={updateLinkUrl}
+                updateOption={updateOption}
                 deleteLink={deleteLink}
-                handleOptionChange={(index, name) => {
-                  handleOptionChange(index, name);
-                }}
               />
             ))}
           </S.LinksWrapper>
@@ -48,7 +55,7 @@ export default function CustomizeForm() {
             type="submit"
             text="Save"
             theme="primary"
-            disabled={!links}
+            disabled={links.length ? false : true}
             minContentWidth
           />
         </S.CustomizeSave>
