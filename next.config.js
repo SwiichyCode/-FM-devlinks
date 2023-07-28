@@ -10,7 +10,7 @@ const nextConfig = {
 
       {
         source: "/home",
-        destination: "/home/links",
+        destination: "/links",
         permanent: false,
       },
     ];

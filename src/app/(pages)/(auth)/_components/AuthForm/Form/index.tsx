@@ -58,9 +58,8 @@ export default function Form({ buttonLabel, isLogin, urlRedirection }: Props) {
           type="email"
           name="email"
           rules={{
-            required: true,
+            required: "Can’t be empty",
           }}
-          errorMessage="Can’t be empty"
         />
 
         <TextField
