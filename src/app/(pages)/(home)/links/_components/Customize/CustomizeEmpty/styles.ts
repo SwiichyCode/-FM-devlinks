@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { CustomizeTitle, CustomizeSubtitle } from "../CustomizeHeader/styles";
+import {
+  FormTitle,
+  FormSubtitle,
+} from "../../../../_layouts/FormLayout/styles";
 
 export const EmptyWrapper = styled.div`
   min-height: calc(48.5rem - 2.4rem - 4rem);
@@ -20,7 +23,7 @@ export const EmptyDescriptionWrapper = styled.div`
   gap: 2.4rem;
 `;
 
-export const EmptyDescriptionTitle = styled(CustomizeTitle)``;
-export const EmptyDescriptionSubtitle = styled(CustomizeSubtitle)`
+export const EmptyDescriptionTitle = styled(FormTitle)``;
+export const EmptyDescriptionSubtitle = styled(FormSubtitle)`
   max-width: 48.8rem;
 `;

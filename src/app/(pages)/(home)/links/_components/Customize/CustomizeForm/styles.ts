@@ -27,7 +27,7 @@ export const LinksWrapper = styled.ul`
   }
 `;
 
-export const CustomizeSave = styled.div`
+export const FormSave = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;

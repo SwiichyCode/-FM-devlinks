@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
-export const CustomizeWrapper = styled.div`
-  width: 100%;
-  border-radius: var(--rounded);
-  background: var(--white);
-  padding: 4rem;
-`;
+export const FormWrapper = styled.form``;
 
-export const CustomizeSave = styled.div`
+export const FormSave = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   height: max-content;
   border-top: 0.1rem solid var(--grey-500);
   padding: 2.4rem 4rem;
+  margin: 0 0;
 `;

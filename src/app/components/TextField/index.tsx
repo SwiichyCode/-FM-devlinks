@@ -19,16 +19,22 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   >;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   useRegister?: boolean;
+  isInlineFlex?: boolean;
+  maxWidth?: number;
+  labelTheme?: "primary" | "secondary";
 }
 
 export default function TextField({
   iconSrc,
   labelText,
+  labelTheme = "primary",
   name,
   errorMessage,
   rules,
   onChange,
   useRegister = true,
+  isInlineFlex,
+  maxWidth,
   ...props
 }: Props) {
   const { register, setFocus, formState } = useFormContext();
@@ -36,7 +42,7 @@ export default function TextField({
   const textFieldRef = useRef<HTMLDivElement>(null);
 
   const handleActiveInput = () => {
-    setFocus(name || "");
+    setFocus(name);
     setIsFocused(true);
   };
 
@@ -45,13 +51,14 @@ export default function TextField({
   });
 
   return (
-    <S.TextFieldContainer>
-      <S.TextFieldLabel>{labelText}</S.TextFieldLabel>
+    <S.TextFieldContainer isInlineFlex={isInlineFlex}>
+      <S.TextFieldLabel labelTheme={labelTheme}>{labelText}</S.TextFieldLabel>
       <S.TextFieldWrapper
         ref={textFieldRef}
         onClick={handleActiveInput}
         isFocused={isFocused}
         error={formState.errors[name || ""] as FieldErrors}
+        maxWidth={maxWidth}
       >
         {iconSrc && (
           <S.TextFieldIcon src={iconSrc} width={16} height={16} alt="" />

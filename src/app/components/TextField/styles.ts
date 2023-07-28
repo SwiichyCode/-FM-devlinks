@@ -2,20 +2,32 @@ import { FieldErrors } from "react-hook-form";
 import styled from "styled-components";
 import Image from "next/image";
 
-export const TextFieldContainer = styled.div`
-  ${({ theme }) => theme.mixins.flexColumn};
+export const TextFieldContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => !["isInlineFlex"].includes(prop),
+})<{ isInlineFlex: boolean | undefined }>`
+  ${({ isInlineFlex, theme }) =>
+    isInlineFlex
+      ? "display: flex; align-items: center; justify-content: space-between;"
+      : theme.mixins.flexColumn};
+
   gap: 0.4rem;
 `;
 
-export const TextFieldLabel = styled.label`
-  font-size: 1.4rem;
-  color: var(--grey-800);
+export const TextFieldLabel = styled.label.withConfig({
+  shouldForwardProp: (prop) => !["labelTheme"].includes(prop),
+})<{ labelTheme: "primary" | "secondary" | undefined }>`
+  ${({ labelTheme }) =>
+    labelTheme === "primary"
+      ? "font-size: 1.4rem; font-weight: 400; line-height: 2.4rem; color: var(--grey-800);"
+      : "font-size: 1.6rem; font-weight: 400; line-height: 2.4rem; color: var(--grey);"}
 `;
 
 export const TextFieldWrapper = styled.div.withConfig({
-  shouldForwardProp: (prop) => !["isFocused", "error"].includes(prop),
-})<{ isFocused: boolean; error?: FieldErrors }>`
+  shouldForwardProp: (prop) =>
+    !["isFocused", "maxWidth", "error"].includes(prop),
+})<{ isFocused: boolean; maxWidth: number | undefined; error?: FieldErrors }>`
   width: 100%;
+  max-width: ${({ maxWidth }) => maxWidth}%;
   display: flex;
   align-items: center;
   align-self: stretch;

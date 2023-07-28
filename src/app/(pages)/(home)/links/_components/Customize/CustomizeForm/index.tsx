@@ -41,7 +41,7 @@ export default function CustomizeForm() {
           <EmptyForm />
         )}
 
-        <S.CustomizeSave>
+        <S.FormSave>
           <Button
             type="submit"
             text="Save"
@@ -49,7 +49,7 @@ export default function CustomizeForm() {
             disabled={links.length ? false : true}
             minContentWidth
           />
-        </S.CustomizeSave>
+        </S.FormSave>
       </S.FormWrapper>
     </FormProvider>
   );
