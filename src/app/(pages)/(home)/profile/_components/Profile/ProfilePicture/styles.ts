@@ -56,9 +56,13 @@ export const ProfilePictureInput = styled.input`
   cursor: pointer;
 `;
 
-export const ProfilePictureInformation = styled.p`
+export const ProfilePictureInformation = styled.p.withConfig({
+  shouldForwardProp: (prop) => !["errorPictureFormat"].includes(prop),
+})<{ errorPictureFormat: boolean }>`
   width: 100%;
   max-width: 21.5rem;
   font-size: 1.2rem;
-  color: var(--grey);
+
+  color: ${({ errorPictureFormat }) =>
+    errorPictureFormat ? "var(--red)" : "var(--grey)"};
 `;

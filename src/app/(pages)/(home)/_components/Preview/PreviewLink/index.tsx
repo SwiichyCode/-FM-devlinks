@@ -6,39 +6,39 @@ import * as S from "./styles";
 type Props = {
   isLoading: boolean;
   link: {
-    name: string;
+    platform: string;
     url: string;
   };
 };
 
 export default function PreviewLink({ isLoading, link }: Props) {
-  const { name, url } = link;
+  const { platform, url } = link;
 
   return (
     <S.PreviewLinkWrapper
       as={"li"}
       isLoading={isLoading}
-      name={cleanString(name)}
+      name={cleanString(platform)}
     >
       {link && (
         <S.LinkWrapper
           href={url.length === 0 ? URL.LINKS : url}
           target="_blank"
-          name={cleanString(name)}
+          name={cleanString(platform)}
         >
           <S.DataWrapper>
             <S.LinkIcon
-              src={`/images/preview-icon/icon-${cleanString(name)}.svg`}
+              src={`/images/preview-icon/icon-${cleanString(platform)}.svg`}
               width={20}
               height={20}
               alt=""
             />
-            <S.LinkName>{name}</S.LinkName>
+            <S.LinkName>{platform}</S.LinkName>
           </S.DataWrapper>
 
           <S.ArrowRight
             src={
-              cleanString(name) === "frontendmentor"
+              cleanString(platform) === "frontendmentor"
                 ? "/images/icon-arrow-right-dark.svg"
                 : "/images/icon-arrow-right.svg"
             }

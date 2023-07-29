@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Links } from "@/app/(pages)/(home)/links/_types/links.type";
+import { Links } from "@/app/(pages)/(home)/_stores/useUserProfile";
 import { options } from "./data";
 import cleanString from "@/app/utils/cleanString";
 import TextField from "@/app/components/TextField";
@@ -11,8 +11,8 @@ type Props = {
   index: number;
   id: string;
   links: Links[];
-  updateLinkUrl: (index: number, url: string) => void;
-  updateOption: (index: number, name: string) => void;
+  updateLink: (index: number, url: string) => void;
+  updatePlatform: (index: number, platform: string) => void;
   deleteLink: (id: string) => void;
 };
 
@@ -20,28 +20,28 @@ export default function LinkGenerator({
   index,
   id,
   links,
-  updateLinkUrl,
-  updateOption,
+  updateLink,
+  updatePlatform,
   deleteLink,
 }: Props) {
   const { watch } = useFormContext();
 
   const availableOptions = options.filter(
-    (option) => !links.some((link) => link.name === option.option)
+    (option) => !links.some((link) => link.platform === option.option)
   );
 
   const [selectedOption, setSelectedOption] = useState({
-    option: links[index].name || availableOptions[0].option,
+    option: links[index].platform || availableOptions[0].option,
     icon: options[index].icon || availableOptions[0].icon,
   });
 
   useEffect(() => {
-    updateOption(index, selectedOption.option);
-  }, [index, updateOption, selectedOption]);
+    updatePlatform(index, selectedOption.option);
+  }, [index, updatePlatform, selectedOption]);
 
   useEffect(() => {
     const subscription = watch((value) => {
-      updateLinkUrl(index, value[`platform_${id}`]);
+      updateLink(index, value[`platform_${id}`]);
     });
 
     return () => subscription.unsubscribe();

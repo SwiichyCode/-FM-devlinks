@@ -1,17 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useLinks } from "../../links/_stores/links.store";
+import { useUserProfile } from "@/app/(pages)/(home)/_stores/useUserProfile";
 import { URL } from "@/app/constants/url.constant";
 import PreviewLink from "./PreviewLink";
 import * as S from "./styles";
 
 export default function Preview() {
   const [isLoading, setIsLoading] = useState(false);
+  const { links } = useUserProfile();
   const pathnames = usePathname();
-  const { links } = useLinks();
-
-  console.log("pathnames", pathnames);
 
   // Fake loading
   useEffect(() => {

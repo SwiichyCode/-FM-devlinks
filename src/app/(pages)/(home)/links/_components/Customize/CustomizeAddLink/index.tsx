@@ -1,15 +1,15 @@
 import uuid from "@/app/utils/uuid";
 import Button from "@/app/components/Button";
-import { Links } from "@/app/(pages)/(home)/links/_types/links.type";
+import { Links } from "@/app/(pages)/(home)/_stores/useUserProfile";
 
 type Props = {
   links: Links[];
-  addLink: (link: Links) => void;
+  generateLink: (link: Links) => void;
 };
 
-export default function CustomizeAddLink({ links, addLink }: Props) {
+export default function CustomizeAddLink({ links, generateLink }: Props) {
   const handleAddLink = () => {
-    addLink({ id: uuid(), name: "", url: "" });
+    generateLink({ id: uuid(), platform: "", url: "" });
   };
 
   return (

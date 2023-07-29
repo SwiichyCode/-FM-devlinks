@@ -6,16 +6,22 @@ import * as S from "./styles";
 
 type Props = {
   profile: Profile;
-  updateInput: (name: string, value: string) => void;
+  updateProfileInformations: (name: string, value: string) => void;
 };
 
-export default function ProfileInformations({ profile, updateInput }: Props) {
+export default function ProfileInformations({
+  profile,
+  updateProfileInformations,
+}: Props) {
   const { watch } = useFormContext();
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (typeof updateInput === "function") {
-        updateInput(name as string, value[name as keyof typeof value]);
+      if (typeof updateProfileInformations === "function") {
+        updateProfileInformations(
+          name as string,
+          value[name as keyof typeof value]
+        );
       }
     });
 

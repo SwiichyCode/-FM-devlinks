@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import * as S from "./styles";
 import { Profile } from "../../../_stores/profil.store";
+import * as S from "./styles";
 
 type Props = {
   profile: Profile;
-  updatePicture: (picture: string) => void;
+  updateProfilePicture: (picture: string) => void;
 };
 
-export default function ProfilePicture({ profile, updatePicture }: Props) {
+export default function ProfilePicture({
+  profile,
+  updateProfilePicture,
+}: Props) {
   const [profilePicture, setProfilePicture] = useState<string | null>(
-    profile.profilPicture
+    profile.profilePicture
   );
+  const [errorPictureFormat, setErrorPictureFormat] = useState(false);
 
   const handlePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target && e.target.files && e.target.files.length > 0) {
@@ -26,8 +30,17 @@ export default function ProfilePicture({ profile, updatePicture }: Props) {
   };
 
   useEffect(() => {
-    if (typeof updatePicture === "function") {
-      updatePicture(profilePicture as string);
+    if (
+      profilePicture &&
+      !profilePicture?.match(/data:image\/(png|jpg|jpeg);base64,/)
+    ) {
+      setErrorPictureFormat(true);
+      return;
+    }
+
+    if (typeof updateProfilePicture === "function") {
+      setErrorPictureFormat(false);
+      updateProfilePicture(profilePicture as string);
     }
   }, [profilePicture]);
 
@@ -54,7 +67,7 @@ export default function ProfilePicture({ profile, updatePicture }: Props) {
           onChange={handlePictureChange}
         />
       </S.ProfilePictureInputWrapper>
-      <S.ProfilePictureInformation>
+      <S.ProfilePictureInformation errorPictureFormat={errorPictureFormat}>
         Image must be below 1024x1024px. Use PNG or JPG format.
       </S.ProfilePictureInformation>
     </S.ProfilePictureWrapper>

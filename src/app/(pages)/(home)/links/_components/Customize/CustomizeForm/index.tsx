@@ -1,5 +1,5 @@
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useLinks } from "../../../_stores/links.store";
+import { useUserProfile } from "@/app/(pages)/(home)/_stores/useUserProfile";
 import Button from "@/app/components/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
@@ -7,8 +7,8 @@ import CustomizeAddLink from "../CustomizeAddLink";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
-  const { links, addLink, updateLinkUrl, updateOption, deleteLink } =
-    useLinks();
+  const { links, generateLink, deleteLink, updateLink, updatePlatform } =
+    useUserProfile();
   const methods = useForm();
 
   const onsubmit: SubmitHandler<any> = (data) => {
@@ -21,7 +21,7 @@ export default function CustomizeForm() {
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onsubmit)}>
-        <CustomizeAddLink links={links} addLink={addLink} />
+        <CustomizeAddLink links={links} generateLink={generateLink} />
 
         {links.length > 0 ? (
           <S.LinksWrapper>
@@ -31,8 +31,8 @@ export default function CustomizeForm() {
                 index={index}
                 id={id}
                 links={links}
-                updateLinkUrl={updateLinkUrl}
-                updateOption={updateOption}
+                updateLink={updateLink}
+                updatePlatform={updatePlatform}
                 deleteLink={deleteLink}
               />
             ))}
