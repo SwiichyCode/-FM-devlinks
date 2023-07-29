@@ -1,5 +1,5 @@
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useUserProfile } from "@/app/(pages)/(home)/_stores/useUserProfile";
+import useUserProfile from "@/app/(pages)/(home)/_stores/useUserProfile";
 import Button from "@/app/components/Button";
 import ProfilePicture from "../ProfilePicture";
 import ProfileInformations from "../ProfileInformations";

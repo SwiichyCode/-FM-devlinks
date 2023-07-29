@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useUserProfile } from "@/app/(pages)/(home)/_stores/useUserProfile";
+import useUserProfile from "@/app/(pages)/(home)/_stores/useUserProfile";
 import { URL } from "@/app/constants/url.constant";
 import PreviewLink from "./PreviewLink";
 import * as S from "./styles";

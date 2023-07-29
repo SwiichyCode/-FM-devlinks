@@ -14,7 +14,7 @@ export interface Profile {
   email: string;
 }
 
-interface useUserProfile {
+export interface useUserProfile {
   links: Links[];
   profile: Profile;
   updateProfileInformations: (name: string, value: string) => void;
@@ -26,7 +26,7 @@ interface useUserProfile {
   updatePlatform: (index: number, platform: string) => void;
 }
 
-export const useUserProfile = create<useUserProfile>()(
+const useUserProfile = create<useUserProfile>()(
   persist(
     (set) => ({
       links: [],
@@ -94,3 +94,5 @@ export const useUserProfile = create<useUserProfile>()(
     }
   )
 );
+
+export default useUserProfile;
