@@ -3,14 +3,14 @@ import { breakpoints } from "@/app/styles/breakpoints";
 
 export const ButtonWrapper = styled.button.withConfig({
   shouldForwardProp: (prop) =>
-    !["disabled", "theme", "minContentWidth"].includes(prop),
+    !["disabled", "theme", "maxContentWidth"].includes(prop),
 })<{
   disabled: boolean | undefined;
   theme?: "primary" | "secondary";
-  minContentWidth?: boolean;
+  maxContentWidth?: boolean;
 }>`
   width: 100%;
-  max-width: ${({ minContentWidth }) => minContentWidth && "min-content"};
+  max-width: ${({ maxContentWidth }) => maxContentWidth && "max-content"};
   display: flex;
   align-items: center;
   justify-content: center;

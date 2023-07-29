@@ -12,6 +12,12 @@ export const mixins = {
     flex-direction: column;
   `,
 
+  flexBetween: css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `,
+
   flexColumnItems: css`
     display: flex;
     flex-direction: column;
@@ -45,12 +51,6 @@ export const mixins = {
   flexJustifyCenter: css`
     display: flex;
     justify-content: center;
-  `,
-
-  flexBetween: css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   `,
 
   buttonReset: css`

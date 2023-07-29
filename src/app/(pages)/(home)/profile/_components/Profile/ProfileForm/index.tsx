@@ -15,6 +15,12 @@ export default function ProfileForm() {
 
   const onsubmit: SubmitHandler<any> = (data) => {
     console.log("data", profile);
+
+    setFormSubmitted(true);
+
+    setTimeout(() => {
+      setFormSubmitted(false);
+    }, 3000);
   };
 
   return (
@@ -29,7 +35,7 @@ export default function ProfileForm() {
           updateProfileInformations={updateProfileInformations}
         />
         <S.FormSave>
-          <Button type="submit" text="Save" theme="primary" minContentWidth />
+          <Button type="submit" text="Save" theme="primary" maxContentWidth />
         </S.FormSave>
 
         {formSubmitted && (

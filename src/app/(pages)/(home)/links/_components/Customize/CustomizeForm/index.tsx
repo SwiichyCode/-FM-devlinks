@@ -53,7 +53,7 @@ export default function CustomizeForm() {
             text="Save"
             theme="primary"
             disabled={links.length ? false : true}
-            minContentWidth
+            maxContentWidth
           />
         </S.FormSave>
 

@@ -7,7 +7,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconSrc?: string | null;
   disabled?: boolean;
   theme?: "primary" | "secondary";
-  minContentWidth?: boolean;
+  maxContentWidth?: boolean;
   withLink?: boolean;
   href?: string;
 }
@@ -18,7 +18,7 @@ export default function Button({
   iconSrc,
   disabled,
   theme = "primary",
-  minContentWidth,
+  maxContentWidth,
   withLink,
   href,
   ...props
@@ -27,7 +27,7 @@ export default function Button({
     <ButtonWrapper
       disabled={disabled}
       theme={theme}
-      minContentWidth={minContentWidth}
+      maxContentWidth={maxContentWidth}
       {...props}
     >
       {iconSrc && <Image src={iconSrc} width={20} height={20} alt="" />}

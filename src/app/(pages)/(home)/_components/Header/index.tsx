@@ -16,8 +16,8 @@ export default function Header() {
         text={width < 768 ? null : "Preview"}
         iconSrc={width < 768 ? "/images/icon-preview-header.svg" : null}
         theme="secondary"
-        minContentWidth={true}
-        withLink={true}
+        maxContentWidth
+        withLink
         href="/preview"
       />
     </S.HeaderWrapper>
