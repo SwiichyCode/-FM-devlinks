@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { URL } from "@/app/constants/url.constant";
-import LinkIcon from "/public/images/icon-link.svg";
+import LinkIcon from "/public/images/icon-link-header.svg";
 import ProfileIcon from "/public/images/icon-profile-details-header.svg";
 import * as S from "./styles";
 
