@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const FormWrapper = styled.form``;
+export const FormWrapper = styled.form`
+  ${({ theme }) => theme.mixins.flexColumn};
+  gap: 2.4rem;
+`;
 
 export const FormSave = styled.div`
   width: 100%;

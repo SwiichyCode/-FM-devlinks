@@ -1,11 +1,14 @@
+import React, { useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import useUserProfile from "@/app/(pages)/(home)/_stores/useUserProfile";
 import Button from "@/app/components/Button";
 import ProfilePicture from "../ProfilePicture";
 import ProfileInformations from "../ProfileInformations";
+import Notification from "@/app/(pages)/(home)/_components/Notification";
 import * as S from "./styles";
 
 export default function ProfileForm() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const { profile, updateProfileInformations, updateProfilePicture } =
     useUserProfile();
   const methods = useForm();
@@ -28,6 +31,13 @@ export default function ProfileForm() {
         <S.FormSave>
           <Button type="submit" text="Save" theme="primary" minContentWidth />
         </S.FormSave>
+
+        {formSubmitted && (
+          <Notification
+            icon="/images/icon-changes-saved.svg"
+            message="Your changes have been succesfully saved!"
+          />
+        )}
       </S.FormWrapper>
     </FormProvider>
   );

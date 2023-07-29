@@ -1,12 +1,15 @@
+import React, { useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import useUserProfile from "@/app/(pages)/(home)/_stores/useUserProfile";
 import Button from "@/app/components/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
+import Notification from "@/app/(pages)/(home)/_components/Notification";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const { links, generateLink, deleteLink, updateLink, updatePlatform } =
     useUserProfile();
   const methods = useForm();
@@ -14,8 +17,11 @@ export default function CustomizeForm() {
   const onsubmit: SubmitHandler<any> = (data) => {
     if (links.length === 0) return;
 
-    console.log("links", links);
-    console.log(data);
+    setFormSubmitted(true);
+
+    setTimeout(() => {
+      setFormSubmitted(false);
+    }, 3000);
   };
 
   return (
@@ -50,6 +56,13 @@ export default function CustomizeForm() {
             minContentWidth
           />
         </S.FormSave>
+
+        {formSubmitted && (
+          <Notification
+            icon="/images/icon-changes-saved.svg"
+            message="Your changes have been succesfully saved!"
+          />
+        )}
       </S.FormWrapper>
     </FormProvider>
   );

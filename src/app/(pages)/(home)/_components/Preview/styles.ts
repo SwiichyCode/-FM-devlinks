@@ -50,7 +50,7 @@ export const PreviewHeader = styled.div`
   margin-top: 0.5rem;
 `;
 
-export const SkeletonImage = styled(SkeletonAnimation)`
+export const SkeletonPicture = styled(SkeletonAnimation)`
   width: 9.6rem;
   height: 9.6rem;
   border-radius: 50%;
@@ -64,7 +64,7 @@ export const SkeletonFullName = styled(SkeletonAnimation)`
   margin-bottom: 1.3rem;
 `;
 
-export const SkeletonWebsite = styled(SkeletonAnimation)`
+export const SkeletonEmail = styled(SkeletonAnimation)`
   width: 7.2rem;
   height: 0.8rem;
   border-radius: 10.4rem;

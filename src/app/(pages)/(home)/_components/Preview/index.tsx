@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import useUserProfile from "@/app/(pages)/(home)/_stores/useUserProfile";
 import { URL } from "@/app/constants/url.constant";
+import PreviewPicture from "./PreviewPicture";
 import PreviewLink from "./PreviewLink";
+import PreviewFullName from "./PreviewFullName";
+import PreviewEmail from "./PreviewEmail";
 import * as S from "./styles";
 
 export default function Preview() {
   const [isLoading, setIsLoading] = useState(false);
-  const { links } = useUserProfile();
+  const { links, profile } = useUserProfile();
   const pathnames = usePathname();
 
   // Fake loading
@@ -25,9 +28,23 @@ export default function Preview() {
       <S.IllustrationMockup>
         <S.PreviewResult>
           <S.PreviewHeader>
-            <S.SkeletonImage isLoading={isLoading} />
-            <S.SkeletonFullName isLoading={isLoading} />
-            <S.SkeletonWebsite isLoading={isLoading} />
+            {profile.profilePicture ? (
+              <PreviewPicture profile={profile} isLoading={isLoading} />
+            ) : (
+              <S.SkeletonPicture isLoading={isLoading} />
+            )}
+
+            {profile.firstName && profile.lastName ? (
+              <PreviewFullName profile={profile} isLoading={isLoading} />
+            ) : (
+              <S.SkeletonFullName isLoading={isLoading} />
+            )}
+
+            {profile.email ? (
+              <PreviewEmail profile={profile} isLoading={isLoading} />
+            ) : (
+              <S.SkeletonEmail isLoading={isLoading} />
+            )}
           </S.PreviewHeader>
 
           <S.PreviewLinks>
