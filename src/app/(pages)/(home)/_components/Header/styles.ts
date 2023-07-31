@@ -12,3 +12,8 @@ export const HeaderWrapper = styled.header`
     margin: 0;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1.6rem;
+`;
