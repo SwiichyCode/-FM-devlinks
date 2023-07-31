@@ -1,46 +1,34 @@
-import axios from "axios";
-import API_URL from "@/constants/api.constant";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-const fromLocalHost = true;
+const supabase = createClientComponentClient();
 
-const api_url = fromLocalHost
-  ? "http://localhost:8080/api/auth/"
-  : API_URL.api_auth;
+const signup = async (email: string, password: string) => {
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: `${location.origin}/auth/callback`,
+    },
+  });
 
-const register = async (email: string, password: string) => {
-  return axios.post(api_url + "register", {
+  return { error };
+};
+
+const login = async (email: string, password: string) => {
+  return await supabase.auth.signInWithPassword({
     email,
     password,
   });
 };
 
-const login = async (email: string, password: string) => {
-  return axios
-    .post(api_url + "login", {
-      email,
-      password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-      return response.data;
-    });
-};
-
-const logout = () => {
-  localStorage.removeItem("user");
-};
-
-const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user") || "{}");
+const logout = async () => {
+  return await supabase.auth.signOut();
 };
 
 const AuthService = {
-  register,
+  signup,
   login,
   logout,
-  getCurrentUser,
 };
 
 export default AuthService;
