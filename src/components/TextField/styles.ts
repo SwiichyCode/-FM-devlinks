@@ -25,7 +25,7 @@ export const TextFieldLabel = styled.label.withConfig({
 export const TextFieldWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) =>
     !["isFocused", "maxWidth", "error"].includes(prop),
-})<{ isFocused: boolean; maxWidth: number | undefined; error?: FieldErrors }>`
+})<{ isFocused: boolean; maxWidth?: number | undefined; error?: FieldErrors }>`
   width: 100%;
   max-width: ${({ maxWidth }) => maxWidth}%;
   display: flex;

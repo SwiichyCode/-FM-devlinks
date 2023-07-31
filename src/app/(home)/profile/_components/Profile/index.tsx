@@ -2,7 +2,7 @@
 import FormLayout from "../../../_layouts/FormLayout";
 import ProfileForm from "./ProfileForm";
 
-export default function ProfileTest() {
+export default function Profile_() {
   return (
     <FormLayout
       title="Profile Details"

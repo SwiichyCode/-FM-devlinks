@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Profile } from "../../../_stores/profil.store";
+import { Profile } from "@/app/(home)/_stores/useUserProfile";
 import * as S from "./styles";
 
 type Props = {

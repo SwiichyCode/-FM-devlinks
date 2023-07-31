@@ -1,9 +1,12 @@
-import dynamic from "next/dynamic";
+import Profile_ from "./_components/Profile";
+import ProtectedRoute from "@/layouts/ProtectedRoute";
 
-const ProfileDetails = dynamic(() => import("./_components/Profile"), {
-  ssr: false,
-});
+export const dynamic = "force-dynamic";
 
-export default function Profile() {
-  return <ProfileDetails />;
+export default async function Profile() {
+  return (
+    <ProtectedRoute>
+      <Profile_ />
+    </ProtectedRoute>
+  );
 }

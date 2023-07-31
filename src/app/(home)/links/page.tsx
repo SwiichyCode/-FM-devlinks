@@ -1,9 +1,12 @@
-import dynamic from "next/dynamic";
+import Customize from "./_components/Customize";
+import ProtectedRoute from "@/layouts/ProtectedRoute";
 
-const CustomizeLink = dynamic(() => import("./_components/Customize"), {
-  ssr: false,
-});
+export const dynamic = "force-dynamic";
 
-export default function Links() {
-  return <CustomizeLink />;
+export default async function Links() {
+  return (
+    <ProtectedRoute>
+      <Customize />
+    </ProtectedRoute>
+  );
 }
