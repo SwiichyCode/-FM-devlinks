@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import AuthService from "@/app/(pages)/(auth)/_services/auth.service";
-import TextField from "@/app/components/common/form/TextField";
-import Button from "@/app/components/common/button/Button";
+import TextField from "@/app/components/TextField";
+import Button from "@/app/components/Button";
 import * as S from "./styles";
 
 type Inputs = {
@@ -23,6 +24,7 @@ export default function Form({ buttonLabel, isLogin, urlRedirection }: Props) {
   const [errorApi, setErrorApi] = useState<string | null>(null);
   const methods = useForm<Inputs>();
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
@@ -31,10 +33,21 @@ export default function Form({ buttonLabel, isLogin, urlRedirection }: Props) {
 
     try {
       if (isLogin) {
-        await AuthService.login(email, password);
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
         router.push(urlRedirection);
+        router.refresh();
       } else {
-        await AuthService.register(email, password);
+        await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${location.origin}/auth/callback`,
+          },
+        });
+
         router.push(urlRedirection);
       }
     } catch (error: any) {

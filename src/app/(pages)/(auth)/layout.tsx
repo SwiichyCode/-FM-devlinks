@@ -1,7 +1,7 @@
 "use client";
 import type { Metadata } from "next";
 import { breakpoints } from "@/app/styles/breakpoints";
-import Logo from "@/app/components/common/Logo";
+import Logo from "@/app/components/Logo";
 import styled from "styled-components";
 
 export const metadata: Metadata = {

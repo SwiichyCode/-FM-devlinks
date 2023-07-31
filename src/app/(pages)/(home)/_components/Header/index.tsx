@@ -1,6 +1,6 @@
 "use client";
 import { useWindowSize } from "usehooks-ts";
-import Logo from "@/app/(pages)/(home)/_components/Logo";
+import Logo from "@/app/components/Logo";
 import Navigation from "@/app/(pages)/(home)/_components/Navigation";
 import Button from "@/app/components/Button";
 import * as S from "./styles";

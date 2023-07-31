@@ -1,15 +1,10 @@
 "use client";
-import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
   size: "small" | "large" | "mobile";
 };
-
-const LogoMobileWrapper = styled.div`
-  width: 52px;
-`;
 
 export default function Logo({ size }: Props) {
   return (
