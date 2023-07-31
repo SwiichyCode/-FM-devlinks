@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
-import AppLayout from "@/app/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 
 export const metadata: Metadata = {
   title: "devlinks",
