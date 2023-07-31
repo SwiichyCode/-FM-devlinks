@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
+"use client";
 import { AuthLayoutWrapper } from "@/layouts/AuthLayout";
 import Logo from "@/components/Logo";
-
-export const metadata: Metadata = {
-  title: "Authentication",
-  description: "Authentication page for DevLinks",
-};
 
 type Props = {
   children: React.ReactNode;
