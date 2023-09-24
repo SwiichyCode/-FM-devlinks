@@ -1,12 +1,21 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.4rem;
+`;
+
 export const ProfilePictureWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   border-radius: var(--rounded);
   background-color: var(--grey-300);
   padding: 2rem;
+  gap: 1.6rem;
 `;
 
 export const ProfilePictureTitle = styled.h2`
@@ -62,6 +71,7 @@ export const ProfilePictureInformation = styled.p.withConfig({
   width: 100%;
   max-width: 21.5rem;
   font-size: 1.2rem;
+  line-height: 1.8rem;
 
   color: ${({ errorPictureFormat }) =>
     errorPictureFormat ? "var(--red)" : "var(--grey)"};

@@ -47,29 +47,31 @@ export default function ProfilePicture({
   return (
     <S.ProfilePictureWrapper>
       <S.ProfilePictureTitle>Profile picture</S.ProfilePictureTitle>
-      <S.ProfilePictureInputWrapper profilePicture={profilePicture}>
-        <div>
-          <Image
-            src={
-              profilePicture
-                ? "/images/icon-upload-image-light.svg"
-                : "/images/icon-upload-image.svg"
-            }
-            width={40}
-            height={40}
-            alt=""
+      <S.Wrapper>
+        <S.ProfilePictureInputWrapper profilePicture={profilePicture}>
+          <div>
+            <Image
+              src={
+                profilePicture
+                  ? "/images/icon-upload-image-light.svg"
+                  : "/images/icon-upload-image.svg"
+              }
+              width={40}
+              height={40}
+              alt=""
+            />
+            <span>{profilePicture ? "Change Images" : "+ Upload Image"}</span>
+          </div>
+          <S.ProfilePictureInput
+            type="file"
+            name="profilPicture"
+            onChange={handlePictureChange}
           />
-          <span>{profilePicture ? "Change Images" : "+ Upload Image"}</span>
-        </div>
-        <S.ProfilePictureInput
-          type="file"
-          name="profilPicture"
-          onChange={handlePictureChange}
-        />
-      </S.ProfilePictureInputWrapper>
-      <S.ProfilePictureInformation errorPictureFormat={errorPictureFormat}>
-        Image must be below 1024x1024px. Use PNG or JPG format.
-      </S.ProfilePictureInformation>
+        </S.ProfilePictureInputWrapper>
+        <S.ProfilePictureInformation errorPictureFormat={errorPictureFormat}>
+          Image must be below 1024x1024px. Use PNG or JPG format.
+        </S.ProfilePictureInformation>
+      </S.Wrapper>
     </S.ProfilePictureWrapper>
   );
 }
