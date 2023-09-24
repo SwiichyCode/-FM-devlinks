@@ -9,6 +9,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: "primary" | "secondary";
   maxContentWidth?: boolean;
   withLink?: boolean;
+  withIcon?: boolean;
   href?: string;
 }
 
@@ -20,6 +21,7 @@ export default function Button({
   theme = "primary",
   maxContentWidth,
   withLink,
+  withIcon,
   href,
   ...props
 }: Props) {
@@ -28,6 +30,7 @@ export default function Button({
       disabled={disabled}
       theme={theme}
       maxContentWidth={maxContentWidth}
+      withIcon={withIcon}
       type={type}
       {...props}
     >

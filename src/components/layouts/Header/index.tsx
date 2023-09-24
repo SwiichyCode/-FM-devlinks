@@ -9,21 +9,21 @@ import * as S from "./styles";
 
 export default function Header() {
   const { width } = useWindowSize();
-  const buttonWrapperRef = useRef<HTMLDivElement>(null);
-  const buttonWrapperWidth = buttonWrapperRef.current?.offsetWidth;
+
   const showLogout = false;
 
   return (
     <S.HeaderWrapper>
       <Logo />
       <Navigation />
-      <S.ButtonWrapper ref={buttonWrapperRef}>
+      <S.ButtonWrapper>
         <Button
           text={width < 768 ? null : "Preview"}
           iconSrc={width < 768 ? "/images/icon-preview-header.svg" : null}
           theme="secondary"
           maxContentWidth
-          withLink
+          withLink={true}
+          withIcon={true}
           href="/preview"
         />
         {showLogout && <LogoutButton />}

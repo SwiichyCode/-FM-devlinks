@@ -3,11 +3,12 @@ import { breakpoints } from "@/styles/breakpoints";
 
 export const ButtonWrapper = styled.button.withConfig({
   shouldForwardProp: (prop) =>
-    !["disabled", "theme", "maxContentWidth"].includes(prop),
+    !["disabled", "theme", "maxContentWidth", "withIcon"].includes(prop),
 })<{
   disabled: boolean | undefined;
   theme?: "primary" | "secondary";
   maxContentWidth?: boolean;
+  withIcon?: boolean;
 }>`
   width: 100%;
   max-width: ${({ maxContentWidth }) => maxContentWidth && "max-content"};
@@ -51,6 +52,6 @@ export const ButtonWrapper = styled.button.withConfig({
   }
 
   @media screen and (max-width: ${breakpoints.tablet}) {
-    padding: 1.1rem 1.6rem;
+    ${({ withIcon }) => withIcon && "padding: 1.1rem 1.6rem;"}
   }
 `;
