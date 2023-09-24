@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.div`
   width: 100%;
+  max-width: 102.4rem;
+  height: 100%;
   border-radius: var(--rounded);
   background: var(--white);
-  padding: 4rem;
+  padding: 4rem 4rem 0 4rem;
+  margin: 0 auto;
 `;
 
 export const FormHeader = styled.div`

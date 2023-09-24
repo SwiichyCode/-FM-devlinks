@@ -2,11 +2,12 @@
 import styled from "styled-components";
 
 const MainLayoutWrapper = styled.main`
-  width: 100%;
-  height: calc(100vh - 9.4rem - 5rem);
+  min-height: calc(100vh - 9.4rem - 4.8rem - 2.4rem);
   display: flex;
   gap: 24px;
-  padding: 0 2.4rem 2.4rem 2.4rem;
+  margin: 0 2.4rem 2.4rem 2.4rem;
+  border-radius: var(--rounded);
+  background: var(--white);
 `;
 
 type Props = {

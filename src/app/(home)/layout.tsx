@@ -14,7 +14,7 @@ export default async function Layout({ children }: Props) {
     <ProtectedRoute>
       <Header />
       <MainLayout>
-        <Preview />
+        {/* <Preview /> */}
         {children}
       </MainLayout>
     </ProtectedRoute>
