@@ -1,5 +1,4 @@
 "use client";
-import { useRef } from "react";
 import { useWindowSize } from "usehooks-ts";
 import Logo from "@/components/ui/Logo";
 import Navigation from "@/components/layouts/Navigation";
@@ -9,7 +8,6 @@ import * as S from "./styles";
 
 export default function Header() {
   const { width } = useWindowSize();
-
   const showLogout = false;
 
   return (

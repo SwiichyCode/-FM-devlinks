@@ -11,7 +11,7 @@ export const HeaderWrapper = styled.header`
   margin: 2.4rem;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
-    margin: 0;
+    margin: 0 0 2.4rem 0;
   }
 `;
 
