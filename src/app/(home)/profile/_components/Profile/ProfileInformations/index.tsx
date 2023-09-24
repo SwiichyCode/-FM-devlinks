@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { Profile } from "@/app/(home)/_stores/useUserProfile";
-import TextField from "@/components/TextField";
+import TextField from "@/components/ui/TextField";
 import * as S from "./styles";
 
 type Props = {

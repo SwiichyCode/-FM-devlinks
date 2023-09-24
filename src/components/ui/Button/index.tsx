@@ -28,6 +28,7 @@ export default function Button({
       disabled={disabled}
       theme={theme}
       maxContentWidth={maxContentWidth}
+      type={type}
       {...props}
     >
       {iconSrc && <Image src={iconSrc} width={20} height={20} alt="" />}

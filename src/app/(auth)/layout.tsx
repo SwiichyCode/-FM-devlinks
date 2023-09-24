@@ -1,6 +1,6 @@
 "use client";
 import { AuthLayoutWrapper } from "@/layouts/AuthLayout";
-import Logo from "@/components/Logo";
+import Logo from "@/components/ui/Logo";
 
 type Props = {
   children: React.ReactNode;

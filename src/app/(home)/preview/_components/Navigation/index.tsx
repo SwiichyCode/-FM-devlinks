@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import * as S from "./styles";
 
 export default function Navigation() {

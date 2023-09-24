@@ -1,5 +1,5 @@
 import uuid from "@/utils/uuid";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import { Links } from "@/app/(home)/_stores/useUserProfile";
 
 type Props = {

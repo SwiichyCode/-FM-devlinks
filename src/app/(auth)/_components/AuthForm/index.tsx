@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import TextField from "@/components/TextField";
-import Button from "@/components/Button";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import * as S from "./styles";
 

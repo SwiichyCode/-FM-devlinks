@@ -3,8 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { Links } from "@/app/(home)/_stores/useUserProfile";
 import { options } from "./data";
 import cleanString from "@/utils/cleanString";
-import TextField from "@/components/TextField";
-import Select from "@/components/Select";
+import TextField from "@/components/ui/TextField";
+import Select from "@/components/ui/Select";
 import * as S from "./styles";
 
 type Props = {

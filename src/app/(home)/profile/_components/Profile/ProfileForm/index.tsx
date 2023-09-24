@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import ProfilePicture from "../ProfilePicture";
 import ProfileInformations from "../ProfileInformations";
 import Notification from "@/app/(home)/_components/Notification";

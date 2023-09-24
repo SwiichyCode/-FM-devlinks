@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
@@ -31,7 +31,7 @@ export default function CustomizeForm() {
 
         {links.length > 0 ? (
           <S.LinksWrapper>
-            {links.map(({ id }, index) => (
+            {links.map(({ id }, index: number) => (
               <LinkGenerator
                 key={index}
                 index={index}
