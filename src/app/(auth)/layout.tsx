@@ -1,16 +1,16 @@
 "use client";
-import { AuthLayoutWrapper } from "@/layouts/AuthLayout";
+import AuthLayout from "@/layouts/AuthLayout";
 import Logo from "@/components/ui/Logo";
 
 type Props = {
   children: React.ReactNode;
 };
 
-export default function AuthLayout({ children }: Props) {
+export default function Layout({ children }: Props) {
   return (
-    <AuthLayoutWrapper>
+    <AuthLayout>
       <Logo size="large" />
       {children}
-    </AuthLayoutWrapper>
+    </AuthLayout>
   );
 }

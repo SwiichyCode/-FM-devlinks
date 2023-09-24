@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { breakpoints } from "@/styles/breakpoints";
 
-export const AuthLayoutWrapper = styled.div`
+type Props = {
+  children: React.ReactNode;
+};
+
+const AuthLayoutWrapper = styled.div`
   width: 100%;
   height: 100vh;
   ${({ theme }) => theme.mixins.flexCenter}
@@ -14,3 +18,7 @@ export const AuthLayoutWrapper = styled.div`
     padding: 3.2rem;
   }
 `;
+
+export default function AuthLayout({ children }: Props) {
+  return <AuthLayoutWrapper>{children}</AuthLayoutWrapper>;
+}

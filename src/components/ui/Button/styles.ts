@@ -26,7 +26,7 @@ export const ButtonWrapper = styled.button.withConfig({
   outline: ${({ theme }) =>
     theme === "primary" ? "none" : "1px solid var(--purple)"};
   outline-offset: -2px;
-  /* padding: 1.1rem 2.7rem; */
+  padding: 1.1rem 2.7rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;
   transition-property: background-color, box-shadow;
@@ -36,11 +36,6 @@ export const ButtonWrapper = styled.button.withConfig({
     text-decoration: none;
     color: ${({ theme }) =>
       theme === "primary" ? "var(--white)" : "var(--purple)"};
-  }
-
-  & span,
-  a {
-    padding: 1.1rem 2.7rem;
   }
 
   &:hover {
