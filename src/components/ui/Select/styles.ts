@@ -10,6 +10,7 @@ export const SelectContainer = styled.div`
 
 export const SelectLabel = styled.label`
   font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--grey-800);
 `;
 

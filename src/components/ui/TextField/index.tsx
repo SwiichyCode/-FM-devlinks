@@ -1,28 +1,9 @@
 import { useState, useRef } from "react";
-import {
-  useFormContext,
-  RegisterOptions,
-  FieldValues,
-  FieldErrors,
-} from "react-hook-form";
+import { useFormContext, FieldErrors } from "react-hook-form";
 import { useOnClickOutside } from "usehooks-ts";
+import Label from "../Label";
+import { Props } from "./types";
 import * as S from "./styles";
-
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  iconSrc?: string;
-  labelText?: string;
-  name: string;
-  errorMessage?: string;
-  rules?: Pick<
-    RegisterOptions<FieldValues>,
-    "maxLength" | "minLength" | "validate" | "required" | "pattern"
-  >;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  useRegister?: boolean;
-  isInlineFlex?: boolean;
-  maxWidth?: number;
-  labelTheme?: "primary" | "secondary";
-}
 
 export default function TextField({
   iconSrc,
@@ -52,7 +33,7 @@ export default function TextField({
 
   return (
     <S.TextFieldContainer isInlineFlex={isInlineFlex}>
-      <S.TextFieldLabel labelTheme={labelTheme}>{labelText}</S.TextFieldLabel>
+      <Label htmlFor={name} labelText={labelText} labelTheme={labelTheme} />
       <S.TextFieldWrapper
         ref={textFieldRef}
         onClick={handleActiveInput}

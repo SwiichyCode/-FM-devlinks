@@ -61,6 +61,7 @@ export default function ProfileInformations({
         type="email"
         isInlineFlex
         maxWidth={70}
+        rules={{ required: "Can't be empty" }}
       />
     </S.ProfileInformationsWrapper>
   );

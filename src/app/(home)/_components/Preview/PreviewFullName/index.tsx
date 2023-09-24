@@ -1,17 +1,29 @@
+import capitalizeFirstLetterOfEachWord from "@/utils/capitalizeFirstLetterOfEachWord";
 import * as S from "./styles";
 
 type Props = {
-  profile: any;
-  isLoading: boolean;
+  firstName: string;
+  lastName: string;
+  isLoading?: boolean;
+  isPreviewPage?: boolean;
 };
 
-export default function PreviewFullName({ profile, isLoading }: Props) {
-  const { firstName, lastName } = profile;
+export default function PreviewFullName({
+  firstName,
+  lastName,
+  isLoading,
+  isPreviewPage = true,
+}: Props) {
   const fullName = `${firstName} ${lastName}`;
+  const fullNameCapitalized = capitalizeFirstLetterOfEachWord(fullName);
 
   return (
-    <S.PreviewFullNameWrapper as={"p"} isLoading={isLoading}>
-      {fullName}
+    <S.PreviewFullNameWrapper
+      as={"p"}
+      isLoading={isLoading}
+      isPreviewPage={isPreviewPage}
+    >
+      {fullNameCapitalized}
     </S.PreviewFullNameWrapper>
   );
 }

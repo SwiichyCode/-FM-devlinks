@@ -4,14 +4,19 @@ import cleanString from "@/utils/cleanString";
 import * as S from "./styles";
 
 type Props = {
-  isLoading: boolean;
+  isLoading?: boolean;
+  isPreviewPage?: boolean;
   link: {
     platform: string;
     url: string;
   };
 };
 
-export default function PreviewLink({ isLoading, link }: Props) {
+export default function PreviewLink({
+  isLoading,
+  isPreviewPage = true,
+  link,
+}: Props) {
   const { platform, url } = link;
 
   return (
@@ -19,6 +24,7 @@ export default function PreviewLink({ isLoading, link }: Props) {
       as={"li"}
       isLoading={isLoading}
       name={cleanString(platform)}
+      isPreviewPage={isPreviewPage}
     >
       {link && (
         <S.LinkWrapper

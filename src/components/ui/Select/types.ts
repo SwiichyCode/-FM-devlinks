@@ -1,5 +1,6 @@
 export type Props = {
   labelText: string;
+  labelTheme?: "primary" | "secondary";
   withIcon?: boolean;
   selectedOption: {
     option: string;

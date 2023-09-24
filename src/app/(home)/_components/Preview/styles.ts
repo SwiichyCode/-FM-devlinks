@@ -76,9 +76,12 @@ export const SkeletonLink = styled(SkeletonAnimation)`
   border-radius: 0.8rem;
 `;
 
-export const PreviewLinks = styled.ul`
+export const PreviewLinks = styled.ul.withConfig({
+  shouldForwardProp: (prop) => !["isPreviewPage"].includes(prop),
+})<{ isPreviewPage?: boolean }>`
   ${({ theme }) => theme.mixins.flexColumn};
   width: 23.7rem;
   height: 30rem;
   gap: 2rem;
+  ${({ isPreviewPage }) => isPreviewPage && `margin-top: 5.6rem;`};
 `;

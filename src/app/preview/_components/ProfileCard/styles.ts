@@ -7,6 +7,9 @@ export const ProfileCardWrapper = styled.div`
   transform: translate(-50%);
   width: 349px;
   height: 569px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--white);
   border-radius: 2.4rem;
   padding: 4.8rem 5.8rem;

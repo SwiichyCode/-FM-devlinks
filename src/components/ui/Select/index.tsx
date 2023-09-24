@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import Label from "../Label";
 import { Props } from "./types";
 import * as S from "./styles";
 
 export default function Select({
   labelText,
+  labelTheme = "primary",
   withIcon = true,
   selectedOption,
   setSelectedOption,
@@ -35,7 +37,11 @@ export default function Select({
 
   return (
     <S.SelectContainer>
-      <S.SelectLabel>{labelText}</S.SelectLabel>
+      <Label
+        htmlFor={labelText}
+        labelText={labelText}
+        labelTheme={labelTheme}
+      />
       <S.SelectInput
         isFocused={isFocused}
         ref={selectFieldRef}

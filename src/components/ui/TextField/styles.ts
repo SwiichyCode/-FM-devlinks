@@ -13,15 +13,6 @@ export const TextFieldContainer = styled.div.withConfig({
   gap: 0.4rem;
 `;
 
-export const TextFieldLabel = styled.label.withConfig({
-  shouldForwardProp: (prop) => !["labelTheme"].includes(prop),
-})<{ labelTheme: "primary" | "secondary" | undefined }>`
-  ${({ labelTheme }) =>
-    labelTheme === "primary"
-      ? "font-size: 1.4rem; font-weight: 400; line-height: 2.4rem; color: var(--grey-800);"
-      : "font-size: 1.6rem; font-weight: 400; line-height: 2.4rem; color: var(--grey);"}
-`;
-
 export const TextFieldWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) =>
     !["isFocused", "maxWidth", "error"].includes(prop),

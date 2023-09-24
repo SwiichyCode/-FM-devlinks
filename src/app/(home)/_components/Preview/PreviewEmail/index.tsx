@@ -1,15 +1,22 @@
 import * as S from "./styles";
 
 type Props = {
-  profile: any;
-  isLoading: boolean;
+  email: string;
+  isLoading?: boolean;
+  isPreviewPage?: boolean;
 };
 
-export default function PreviewEmail({ profile, isLoading }: Props) {
-  const { email } = profile;
-
+export default function PreviewEmail({
+  email,
+  isLoading,
+  isPreviewPage = true,
+}: Props) {
   return (
-    <S.PreviewEmailWrapper as={"p"} isLoading={isLoading}>
+    <S.PreviewEmailWrapper
+      as={"p"}
+      isLoading={isLoading}
+      isPreviewPage={isPreviewPage}
+    >
       {email}
     </S.PreviewEmailWrapper>
   );
