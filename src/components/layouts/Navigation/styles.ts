@@ -3,6 +3,10 @@ import Link from "next/link";
 import { breakpoints } from "@/styles/breakpoints";
 
 export const NavigationWrapper = styled.nav`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   ${({ theme }) => theme.mixins.flexAlignCenter};
 `;
 

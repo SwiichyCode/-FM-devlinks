@@ -11,13 +11,11 @@ export default function Header() {
   const { width } = useWindowSize();
   const buttonWrapperRef = useRef<HTMLDivElement>(null);
   const buttonWrapperWidth = buttonWrapperRef.current?.offsetWidth;
+  const showLogout = false;
 
   return (
     <S.HeaderWrapper>
-      <Logo
-        size={width < 768 ? "mobile" : "small"}
-        buttonWrapperWidth={buttonWrapperWidth}
-      />
+      <Logo />
       <Navigation />
       <S.ButtonWrapper ref={buttonWrapperRef}>
         <Button
@@ -28,7 +26,7 @@ export default function Header() {
           withLink
           href="/preview"
         />
-        <LogoutButton />
+        {showLogout && <LogoutButton />}
       </S.ButtonWrapper>
     </S.HeaderWrapper>
   );

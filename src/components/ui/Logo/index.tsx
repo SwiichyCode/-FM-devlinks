@@ -1,27 +1,35 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { useWindowSize } from "usehooks-ts";
 
-const LogoWrapper = styled.div<{ buttonWrapperWidth?: number }>`
-  width: ${({ buttonWrapperWidth }) => buttonWrapperWidth}px;
+const LogoWrapper = styled.div`
+  float: left;
 `;
 
 type Props = {
-  size: "small" | "large" | "mobile";
+  isAuth?: boolean;
   buttonWrapperWidth?: number;
 };
 
-export default function Logo({ size, buttonWrapperWidth }: Props) {
+export default function Logo({ isAuth }: Props) {
+  const { width } = useWindowSize();
+
   return (
-    <LogoWrapper buttonWrapperWidth={buttonWrapperWidth}>
+    <LogoWrapper>
       <Link href="/">
-        <Image
-          src="/images/logo-devlinks-large.svg"
-          width={size === "large" ? 182 : 146}
-          height={size === "large" ? 40 : 32}
-          alt="logo"
-        />
+        {isAuth ? (
+          <img src="/images/logo-devlinks-large.svg" alt="logo" />
+        ) : (
+          <img
+            src={
+              width > 1024
+                ? "/images/logo-devlinks-large.svg"
+                : "/images/logo-devlinks-mobile.svg"
+            }
+            alt="logo"
+          />
+        )}
       </Link>
     </LogoWrapper>
   );

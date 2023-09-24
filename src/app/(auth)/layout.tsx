@@ -9,7 +9,7 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <AuthLayout>
-      <Logo size="large" />
+      <Logo isAuth />
       {children}
     </AuthLayout>
   );
