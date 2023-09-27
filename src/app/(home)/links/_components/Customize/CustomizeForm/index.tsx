@@ -23,6 +23,8 @@ export default function CustomizeForm() {
   const { user } = useFetchUser();
   const methods = useForm();
 
+  console.log(linksChanged);
+
   const onsubmit: SubmitHandler<any> = async () => {
     if (links.length === 0 || !linksChanged) {
       return;

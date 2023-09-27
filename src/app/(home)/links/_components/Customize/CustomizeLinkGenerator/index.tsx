@@ -44,7 +44,6 @@ export default function LinkGenerator({
 
     return () => {
       subscription.unsubscribe();
-      setLinksChanged(false);
     };
   }, [watch]);
 
