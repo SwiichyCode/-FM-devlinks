@@ -11,12 +11,14 @@ type Props = {
   index: number;
   id: string;
   setLastLinkDeleted: (value: boolean) => void;
+  setLinksChanged: (value: boolean) => void;
 };
 
 export default function LinkGenerator({
   index,
   id,
   setLastLinkDeleted,
+  setLinksChanged,
 }: Props) {
   const { watch } = useFormContext();
   const { links, updateLink, updatePlatform, deleteLink } = useUserProfile();
@@ -37,14 +39,19 @@ export default function LinkGenerator({
   useEffect(() => {
     const subscription = watch((value) => {
       updateLink(index, value[`platform_${id}`]);
+      setLinksChanged(true);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      subscription.unsubscribe();
+      setLinksChanged(false);
+    };
   }, [watch]);
 
   const handleDeleteLink = (id: string) => {
     deleteLink(id);
     setLastLinkDeleted(true);
+    setLinksChanged(true);
   };
 
   return (
@@ -64,6 +71,7 @@ export default function LinkGenerator({
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           optionsList={availableOptions}
+          setLinksChanged={setLinksChanged}
         />
         <TextField
           labelText="Link"

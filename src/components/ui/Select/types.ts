@@ -16,4 +16,5 @@ export type Props = {
     option: string;
     icon: string;
   }[];
+  setLinksChanged: (value: boolean) => void;
 };

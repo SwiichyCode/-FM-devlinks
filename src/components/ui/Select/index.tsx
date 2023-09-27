@@ -11,6 +11,7 @@ export default function Select({
   selectedOption,
   setSelectedOption,
   optionsList,
+  setLinksChanged,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -28,6 +29,7 @@ export default function Select({
       option: option,
       icon: icon,
     });
+    setLinksChanged(true);
     setIsOpen(false);
   };
 

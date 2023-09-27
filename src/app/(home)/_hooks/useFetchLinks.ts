@@ -29,7 +29,7 @@ export default function useFetchLinks() {
       }
     };
     fetchLinks();
-  }, []);
+  }, [links]);
 
   return { data, isLoading };
 }

@@ -16,14 +16,17 @@ export default function CustomizeForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [lastLinkDeleted, setLastLinkDeleted] = useState(false);
   const [isPending, startTransition] = useTransition();
-
+  // Refer to docs.MD for more info about this state
+  const [linksChanged, setLinksChanged] = useState(false);
   const { links, setLinks } = useUserProfile();
   const { data, isLoading } = useFetchLinks();
   const { user } = useFetchUser();
   const methods = useForm();
 
   const onsubmit: SubmitHandler<any> = async () => {
-    if (links.length === 0) return;
+    if (links.length === 0 || !linksChanged) {
+      return;
+    }
 
     startTransition(() => {
       FormAction({
@@ -33,6 +36,7 @@ export default function CustomizeForm() {
     });
 
     setFormSubmitted(true);
+    setLinksChanged(false);
 
     setTimeout(() => {
       setFormSubmitted(false);
@@ -59,8 +63,7 @@ export default function CustomizeForm() {
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onsubmit)}>
-        <p>{user.email}</p>
-        <CustomizeAddLink />
+        <CustomizeAddLink setLinksChanged={setLinksChanged} />
 
         {links.length > 0 ? (
           <S.LinksWrapper>
@@ -70,6 +73,7 @@ export default function CustomizeForm() {
                 index={index}
                 id={id}
                 setLastLinkDeleted={setLastLinkDeleted}
+                setLinksChanged={setLinksChanged}
               />
             ))}
           </S.LinksWrapper>
@@ -82,7 +86,7 @@ export default function CustomizeForm() {
             type="submit"
             text="Save"
             theme="primary"
-            disabled={links.length ? false : true}
+            disabled={links.length === 0 || !linksChanged}
             maxContentWidth
           />
         </S.FormSave>
