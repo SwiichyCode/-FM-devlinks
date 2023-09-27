@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import AuthService from "../../_services/auth.service";
 import TextField from "@/components/ui/TextField";
 import Button from "@/components/ui/Button";
 import * as S from "./styles";
+
+import useUserProfile from "@/app/(home)/_stores/useUserProfile";
+import { Profile } from "@/app/(home)/_types/profile.type";
 
 type Inputs = {
   email: string;
@@ -28,6 +31,8 @@ export default function AuthForm({
   const methods = useForm<Inputs>();
   const router = useRouter();
 
+  const { setLinks, setProfile } = useUserProfile();
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
     let hasError = false;
@@ -39,6 +44,7 @@ export default function AuthForm({
 
         localStorage.setItem("user", JSON.stringify(data.user));
 
+        router.refresh();
         if (error) {
           throw new Error(error.message);
         } else {
@@ -65,6 +71,12 @@ export default function AuthForm({
       setIsLoading(false);
     }
   };
+
+  // Reset zustand store state if user have multiple account
+  useEffect(() => {
+    setLinks([]);
+    setProfile({} as Profile);
+  }, []);
 
   return (
     <FormProvider {...methods}>

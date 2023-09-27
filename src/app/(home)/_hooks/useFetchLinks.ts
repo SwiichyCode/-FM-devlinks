@@ -18,7 +18,6 @@ export default function useFetchLinks() {
       try {
         const { data, error } = await ProfileService.getLinks(user.id);
         if (data) {
-          // Type this
           setData(data[0]);
         }
 

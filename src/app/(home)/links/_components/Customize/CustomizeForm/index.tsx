@@ -59,6 +59,7 @@ export default function CustomizeForm() {
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onsubmit)}>
+        <p>{user.email}</p>
         <CustomizeAddLink />
 
         {links.length > 0 ? (
