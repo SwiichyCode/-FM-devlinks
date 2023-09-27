@@ -14,11 +14,12 @@ import * as S from "./styles";
 export default function ProfileForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const { profile, isLoading } = useFetchProfile();
+  const { data, isLoading } = useFetchProfile();
   const { user } = useFetchUser();
 
   const {
     profile: P,
+    setProfile,
     updateProfilePicture,
     updateProfilePictureFile,
   } = useUserProfile();
@@ -51,18 +52,26 @@ export default function ProfileForm() {
   };
 
   useEffect(() => {
-    methods.reset(profile);
-  }, [profile]);
+    if (data?.username) {
+      setProfile(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    methods.reset(data);
+  }, [data]);
+
+  isLoading && <p>Loading...</p>;
 
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onSubmit)}>
-        <ProfilePicture
+        {/* <ProfilePicture
           profile={P}
           updateProfilePictureFile={updateProfilePictureFile}
           updateProfilePicture={updateProfilePicture}
-        />
-        <ProfileInformations profileData={profile as Profile} />
+        /> */}
+        <ProfileInformations profileData={data as Profile} />
         <S.FormSave>
           <Button type="submit" text="Save" theme="primary" maxContentWidth />
         </S.FormSave>

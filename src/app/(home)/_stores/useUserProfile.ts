@@ -12,6 +12,7 @@ export interface useUserProfile {
   deleteLink: (id: string) => void;
   updateLink: (index: number, url: string) => void;
   setLinks: (links: Links[]) => void;
+  setProfile: (profile: Profile) => void;
   updateLinkOrder: (dragIndex: number, hoverIndex: number) => void;
   updatePlatform: (index: number, platform: string) => void;
 }
@@ -48,6 +49,11 @@ const useUserProfile = create<useUserProfile>()((set) => ({
   setLinks: (links) =>
     set(() => ({
       links,
+    })),
+
+  setProfile: (profile) =>
+    set(() => ({
+      profile,
     })),
 
   updateLinkOrder: (dragIndex: number, hoverIndex: number) =>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
-import useFetchProfile from "@/app/(home)/profile/_hooks/useFetchProfile";
+import useFetchLinks from "@/app/(home)/_hooks/useFetchLinks";
 import FormAction from "../../../_actions/FormAction";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
@@ -18,8 +18,7 @@ export default function CustomizeForm() {
   const [isPending, startTransition] = useTransition();
 
   const { links, setLinks } = useUserProfile();
-  const { profile } = useFetchProfile();
-  const l = (profile?.links as Links[]) || [];
+  const { data, isLoading } = useFetchLinks();
   const { user } = useFetchUser();
   const methods = useForm();
 
@@ -41,10 +40,10 @@ export default function CustomizeForm() {
   };
 
   useEffect(() => {
-    if (l.length > 0) {
-      setLinks(l);
+    if (data.links?.length) {
+      setLinks(data.links);
     }
-  }, [l]);
+  }, [data]);
 
   useEffect(() => {
     if (links.length === 0 && lastLinkDeleted) {
@@ -54,6 +53,8 @@ export default function CustomizeForm() {
       });
     }
   }, [links, lastLinkDeleted, user.id]);
+
+  isLoading && <p>Loading...</p>;
 
   return (
     <FormProvider {...methods}>

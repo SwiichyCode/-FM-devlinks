@@ -17,7 +17,19 @@ const getProfile = async (id: string) => {
       username,
       firstname,
       lastname,
-      email,
+      email
+    `
+    )
+    .eq("id", id);
+
+  return { data, error };
+};
+
+const getLinks = async (id: string) => {
+  const { data, error } = await supabase
+    .from("user")
+    .select(
+      `
       links
     `
     )
@@ -40,6 +52,7 @@ const uploadProfilePicture = async (file: any) => {
 const ProfileService = {
   updateProfile,
   getProfile,
+  getLinks,
   uploadProfilePicture,
 };
 
