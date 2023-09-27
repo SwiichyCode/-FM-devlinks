@@ -26,7 +26,7 @@ export const ProfilePictureTitle = styled.h2`
 
 export const ProfilePictureInputWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !["profilePicture"].includes(prop),
-})<{ profilePicture: string | null }>`
+})<{ profilePicture: string | undefined }>`
   position: relative;
   display: flex;
   flex-direction: column;

@@ -8,6 +8,8 @@ export default function LogoutButton() {
 
   const handleLogout = async () => {
     await AuthService.logout();
+
+    localStorage.removeItem("user");
     router.refresh();
   };
 

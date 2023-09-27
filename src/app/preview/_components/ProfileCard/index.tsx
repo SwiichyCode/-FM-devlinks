@@ -9,14 +9,12 @@ import * as S from "./styles";
 
 export default function ProfileCard() {
   const { links, profile } = useUserProfile();
-  const { profilePicture, firstName, lastName, email } = profile;
-
-  console.log("ProfileCard", { links, profile });
+  const { profilePicture, firstname, lastname, email } = profile;
 
   return (
     <S.ProfileCardWrapper>
       <PreviewPicture picture={profilePicture} />
-      <PreviewFullName firstName={firstName} lastName={lastName} />
+      <PreviewFullName firstname={firstname} lastname={lastname} />
       <PreviewEmail email={email} />
       <PreviewLinks isPreviewPage={true}>
         {links.map((link, index: number) => (

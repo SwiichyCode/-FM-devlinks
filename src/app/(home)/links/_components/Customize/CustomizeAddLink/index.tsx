@@ -1,13 +1,10 @@
 import uuid from "@/utils/uuid";
+import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
-import { Links } from "@/app/(home)/_stores/useUserProfile";
 
-type Props = {
-  links: Links[];
-  generateLink: (link: Links) => void;
-};
+export default function CustomizeAddLink() {
+  const { links, generateLink } = useUserProfile();
 
-export default function CustomizeAddLink({ links, generateLink }: Props) {
   const handleAddLink = () => {
     generateLink({ id: uuid(), platform: "", url: "" });
   };

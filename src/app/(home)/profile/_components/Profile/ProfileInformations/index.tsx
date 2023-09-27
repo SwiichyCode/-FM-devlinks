@@ -1,52 +1,42 @@
-import { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
-import { Profile } from "@/app/(home)/_stores/useUserProfile";
 import TextField from "@/components/ui/TextField";
+import type { Profile } from "../../../../_types/profile.type";
 import * as S from "./styles";
 
 type Props = {
-  profile: Profile;
-  updateProfileInformations: (name: string, value: string) => void;
+  profileData: Profile;
 };
 
-export default function ProfileInformations({
-  profile,
-  updateProfileInformations,
-}: Props) {
-  const { watch } = useFormContext();
-
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (typeof updateProfileInformations === "function") {
-        updateProfileInformations(
-          name as string,
-          value[name as keyof typeof value]
-        );
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
+export default function ProfileInformations({ profileData }: Props) {
   return (
     <S.ProfileInformationsWrapper>
       <TextField
-        name="firstName"
-        labelText="First name*"
+        name="username"
+        labelText="Username*"
         labelTheme="secondary"
-        placeholder="e.g. John"
-        defaultValue={profile.firstName}
+        placeholder="e.g. johnappleseed"
+        defaultValue={profileData?.username}
         type="text"
         isInlineFlex
         maxWidth={70}
         rules={{ required: "Can't be empty" }}
       />
       <TextField
-        name="lastName"
+        name="firstname"
+        labelText="First name*"
+        labelTheme="secondary"
+        placeholder="e.g. John"
+        defaultValue={profileData?.firstname}
+        type="text"
+        isInlineFlex
+        maxWidth={70}
+        rules={{ required: "Can't be empty" }}
+      />
+      <TextField
+        name="lastname"
         labelText="Last name*"
         labelTheme="secondary"
         placeholder="e.g. Appleseed"
-        defaultValue={profile.lastName}
+        defaultValue={profileData?.lastname}
         type="text"
         isInlineFlex
         maxWidth={70}
@@ -57,7 +47,7 @@ export default function ProfileInformations({
         labelText="Email"
         labelTheme="secondary"
         placeholder="e.g. email@example.com"
-        defaultValue={profile.email}
+        defaultValue={profileData?.email}
         type="email"
         isInlineFlex
         maxWidth={70}

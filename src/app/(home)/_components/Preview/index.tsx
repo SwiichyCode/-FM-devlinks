@@ -12,6 +12,7 @@ import * as S from "./styles";
 export default function Preview() {
   const [isLoading, setIsLoading] = useState(false);
   const { links, profile } = useUserProfile();
+  const { profilePicture, firstname, lastname, email } = profile;
   const pathnames = usePathname();
 
   // Fake loading
@@ -28,20 +29,24 @@ export default function Preview() {
       <S.IllustrationMockup>
         <S.PreviewResult>
           <S.PreviewHeader>
-            {profile.profilePicture ? (
-              <PreviewPicture profile={profile} isLoading={isLoading} />
+            {profilePicture ? (
+              <PreviewPicture picture={profilePicture} isLoading={isLoading} />
             ) : (
               <S.SkeletonPicture isLoading={isLoading} />
             )}
 
-            {profile.firstName && profile.lastName ? (
-              <PreviewFullName profile={profile} isLoading={isLoading} />
+            {firstname && lastname ? (
+              <PreviewFullName
+                firstname={firstname}
+                lastname={lastname}
+                isLoading={isLoading}
+              />
             ) : (
               <S.SkeletonFullName isLoading={isLoading} />
             )}
 
-            {profile.email ? (
-              <PreviewEmail profile={profile} isLoading={isLoading} />
+            {email ? (
+              <PreviewEmail email={email} isLoading={isLoading} />
             ) : (
               <S.SkeletonEmail isLoading={isLoading} />
             )}

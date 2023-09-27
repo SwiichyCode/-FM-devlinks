@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import AuthService from "../../_services/auth.service";
 import TextField from "@/components/ui/TextField";
 import Button from "@/components/ui/Button";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import * as S from "./styles";
 
 type Inputs = {
@@ -25,7 +25,6 @@ export default function AuthForm({
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorApi, setErrorApi] = useState<string | null>(null);
-  const supabase = createClientComponentClient();
   const methods = useForm<Inputs>();
   const router = useRouter();
 
@@ -36,18 +35,18 @@ export default function AuthForm({
 
     try {
       if (isLogin) {
-        await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+        const { data, error } = await AuthService.login(email, password);
 
-        router.push(urlRedirection);
-        router.refresh();
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        if (error) {
+          throw new Error(error.message);
+        } else {
+          router.push(urlRedirection);
+          router.refresh();
+        }
       } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-        });
+        const { error } = await AuthService.signup(email, password);
 
         if (error) {
           throw new Error(error.message);

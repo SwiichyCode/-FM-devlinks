@@ -15,10 +15,12 @@ const signup = async (email: string, password: string) => {
 };
 
 const login = async (email: string, password: string) => {
-  return await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
+
+  return { data, error };
 };
 
 const logout = async () => {

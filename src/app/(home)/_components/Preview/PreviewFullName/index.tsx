@@ -2,19 +2,19 @@ import capitalizeFirstLetterOfEachWord from "@/utils/capitalizeFirstLetterOfEach
 import * as S from "./styles";
 
 type Props = {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   isLoading?: boolean;
   isPreviewPage?: boolean;
 };
 
 export default function PreviewFullName({
-  firstName,
-  lastName,
+  firstname,
+  lastname,
   isLoading,
   isPreviewPage = true,
 }: Props) {
-  const fullName = `${firstName} ${lastName}`;
+  const fullName = `${firstname} ${lastname}`;
   const fullNameCapitalized = capitalizeFirstLetterOfEachWord(fullName);
 
   return (

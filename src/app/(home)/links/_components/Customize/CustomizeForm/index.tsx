@@ -1,21 +1,37 @@
-import React, { useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
+import useFetchProfile from "@/app/(home)/profile/_hooks/useFetchProfile";
+import FormAction from "../../../_actions/FormAction";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
 import Notification from "@/app/(home)/_components/Notification";
+import type { Links } from "@/app/(home)/_types/links.type";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const { links, generateLink, deleteLink, updateLink, updatePlatform } =
-    useUserProfile();
+  const [lastLinkDeleted, setLastLinkDeleted] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  const { links, setLinks } = useUserProfile();
+  const { profile } = useFetchProfile();
+  const l = (profile?.links as Links[]) || [];
+  const { user } = useFetchUser();
   const methods = useForm();
 
-  const onsubmit: SubmitHandler<any> = (data) => {
+  const onsubmit: SubmitHandler<any> = async () => {
     if (links.length === 0) return;
+
+    startTransition(() => {
+      FormAction({
+        formData: links as Links[],
+        id: user.id,
+      });
+    });
 
     setFormSubmitted(true);
 
@@ -24,10 +40,25 @@ export default function CustomizeForm() {
     }, 3000);
   };
 
+  useEffect(() => {
+    if (l.length > 0) {
+      setLinks(l);
+    }
+  }, [l]);
+
+  useEffect(() => {
+    if (links.length === 0 && lastLinkDeleted) {
+      FormAction({
+        formData: [],
+        id: user.id,
+      });
+    }
+  }, [links, lastLinkDeleted, user.id]);
+
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onsubmit)}>
-        <CustomizeAddLink links={links} generateLink={generateLink} />
+        <CustomizeAddLink />
 
         {links.length > 0 ? (
           <S.LinksWrapper>
@@ -36,10 +67,7 @@ export default function CustomizeForm() {
                 key={index}
                 index={index}
                 id={id}
-                links={links}
-                updateLink={updateLink}
-                updatePlatform={updatePlatform}
-                deleteLink={deleteLink}
+                setLastLinkDeleted={setLastLinkDeleted}
               />
             ))}
           </S.LinksWrapper>

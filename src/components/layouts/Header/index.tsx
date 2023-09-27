@@ -8,7 +8,7 @@ import * as S from "./styles";
 
 export default function Header() {
   const { width } = useWindowSize();
-  const showLogout = false;
+  const showLogout = true;
 
   return (
     <S.HeaderWrapper>

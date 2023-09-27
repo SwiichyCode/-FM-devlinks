@@ -81,7 +81,7 @@ export const PreviewLinks = styled.ul.withConfig({
 })<{ isPreviewPage?: boolean }>`
   ${({ theme }) => theme.mixins.flexColumn};
   width: 23.7rem;
-  height: 30rem;
+  height: ${({ isPreviewPage }) => (isPreviewPage ? "auto" : "30rem")};
   gap: 2rem;
   ${({ isPreviewPage }) => isPreviewPage && `margin-top: 5.6rem;`};
 `;
