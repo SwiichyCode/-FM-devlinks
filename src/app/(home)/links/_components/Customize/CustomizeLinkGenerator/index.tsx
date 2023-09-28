@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import { options } from "./data";

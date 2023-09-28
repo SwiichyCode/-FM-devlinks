@@ -10,11 +10,8 @@ export default function useFetchLinks() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    if (links.length) return;
-
     const fetchLinks = async () => {
+      setIsLoading(true); // Set loading to true when starting the fetch
       try {
         const { data, error } = await ProfileService.getLinks(user.id);
         if (data) {
@@ -26,9 +23,14 @@ export default function useFetchLinks() {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false); // Set loading to false regardless of success or error
       }
     };
-    fetchLinks();
+
+    if (links.length === 0) {
+      fetchLinks();
+    }
   }, [links]);
 
   return { data, isLoading };

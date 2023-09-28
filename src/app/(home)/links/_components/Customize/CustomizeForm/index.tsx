@@ -1,21 +1,20 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import ProfileService from "@/app/(home)/_services/profile.service";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import useFetchLinks from "@/app/(home)/_hooks/useFetchLinks";
-import FormAction from "../../../_actions/FormAction";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
 import Notification from "@/app/(home)/_components/Notification";
-import type { Links } from "@/app/(home)/_types/links.type";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [lastLinkDeleted, setLastLinkDeleted] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState(false);
   // Refer to docs.MD for more info about this state
   const [linksChanged, setLinksChanged] = useState(false);
   const { links, setLinks } = useUserProfile();
@@ -23,44 +22,42 @@ export default function CustomizeForm() {
   const { user } = useFetchUser();
   const methods = useForm();
 
-  console.log(linksChanged);
-
   const onsubmit: SubmitHandler<any> = async () => {
-    if (links.length === 0 || !linksChanged) {
-      return;
+    if (links.length === 0 || !linksChanged) return;
+
+    try {
+      const { error } = await ProfileService.updateProfile({ links }, user.id);
+
+      if (!error) {
+        setFormSubmitted(true);
+        setLinksChanged(false);
+        setTimeout(() => setFormSubmitted(false), 3000);
+      } else {
+        throw error;
+      }
+    } catch (error) {
+      setError(true);
+      setTimeout(() => setError(false), 3000);
     }
-
-    startTransition(() => {
-      FormAction({
-        formData: links as Links[],
-        id: user.id,
-      });
-    });
-
-    setFormSubmitted(true);
-    setLinksChanged(false);
-
-    setTimeout(() => {
-      setFormSubmitted(false);
-    }, 3000);
   };
 
   useEffect(() => {
     if (data.links?.length) {
       setLinks(data.links);
     }
-  }, [data]);
+  }, [data, error]);
 
   useEffect(() => {
     if (links.length === 0 && lastLinkDeleted) {
-      FormAction({
-        formData: [],
-        id: user.id,
-      });
-    }
-  }, [links, lastLinkDeleted, user.id]);
+      const updateForm = async () => {
+        await ProfileService.updateProfile({ links: [] }, user.id);
+      };
 
-  isLoading && <p>Loading...</p>;
+      updateForm();
+    }
+  }, [links, lastLinkDeleted]);
+
+  if (isLoading) return null;
 
   return (
     <FormProvider {...methods}>
@@ -68,17 +65,19 @@ export default function CustomizeForm() {
         <CustomizeAddLink setLinksChanged={setLinksChanged} />
 
         {links.length > 0 ? (
-          <S.LinksWrapper>
-            {links.map(({ id }, index: number) => (
-              <LinkGenerator
-                key={index}
-                index={index}
-                id={id}
-                setLastLinkDeleted={setLastLinkDeleted}
-                setLinksChanged={setLinksChanged}
-              />
-            ))}
-          </S.LinksWrapper>
+          <>
+            <S.LinksWrapper>
+              {links.map(({ id }, index: number) => (
+                <LinkGenerator
+                  key={index}
+                  index={index}
+                  id={id}
+                  setLastLinkDeleted={setLastLinkDeleted}
+                  setLinksChanged={setLinksChanged}
+                />
+              ))}
+            </S.LinksWrapper>
+          </>
         ) : (
           <EmptyForm />
         )}
@@ -93,10 +92,14 @@ export default function CustomizeForm() {
           />
         </S.FormSave>
 
-        {formSubmitted && (
+        {(formSubmitted || error) && (
           <Notification
             icon="/images/icon-changes-saved.svg"
-            message="Your changes have been succesfully saved!"
+            message={
+              formSubmitted
+                ? "Your changes have been succesfully saved!"
+                : "Something went wrong!"
+            }
           />
         )}
       </S.FormWrapper>
