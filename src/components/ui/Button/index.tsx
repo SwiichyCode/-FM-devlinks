@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ButtonWrapper } from "./styles";
+import { LinkWrapper, ButtonWrapper } from "./styles";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string | null;
@@ -11,6 +10,20 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   withLink?: boolean;
   withIcon?: boolean;
   href?: string;
+}
+
+type RenderButtonProps = {
+  withLink?: boolean;
+  href?: string;
+  children: React.ReactNode;
+};
+
+export function RenderButton({ withLink, href, children }: RenderButtonProps) {
+  return withLink ? (
+    <LinkWrapper href={href || ""}>{children}</LinkWrapper>
+  ) : (
+    children
+  );
 }
 
 export default function Button({
@@ -26,17 +39,19 @@ export default function Button({
   ...props
 }: Props) {
   return (
-    <ButtonWrapper
-      disabled={disabled}
-      theme={theme}
-      maxContentWidth={maxContentWidth}
-      withIcon={withIcon}
-      type={type}
-      {...props}
-    >
-      {iconSrc && <Image src={iconSrc} width={20} height={20} alt="" />}
-
-      {withLink ? <Link href={href || ""}>{text}</Link> : <span>{text}</span>}
-    </ButtonWrapper>
+    <RenderButton withLink={withLink} href={href}>
+      <ButtonWrapper
+        type={type}
+        disabled={disabled}
+        theme={theme}
+        maxContentWidth={maxContentWidth}
+        {...props}
+      >
+        {withIcon && iconSrc && (
+          <Image src={iconSrc} alt={text || ""} width={16} height={16} />
+        )}
+        {text}
+      </ButtonWrapper>
+    </RenderButton>
   );
 }

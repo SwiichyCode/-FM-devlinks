@@ -1,5 +1,5 @@
 "use client";
-import useFetchLinks from "@/app/(home)/_hooks/useFetchProfile";
+import useFetchProfile from "@/app/(home)/_hooks/useFetchProfile";
 import PreviewPicture from "@/app/(home)/_components/Preview/PreviewPicture";
 import PreviewFullName from "@/app/(home)/_components/Preview/PreviewFullName";
 import PreviewEmail from "@/app/(home)/_components/Preview/PreviewEmail";
@@ -8,11 +8,9 @@ import PreviewLink from "@/app/(home)/_components/Preview/PreviewLink";
 import * as S from "./styles";
 
 export default function ProfileCard() {
-  const { data, isLoading } = useFetchLinks();
+  const { data, isLoading } = useFetchProfile();
   const { profilePicture, firstname, lastname, email } = data;
   const { links } = data;
-
-  console.log(firstname);
 
   return (
     <S.ProfileCardWrapper>

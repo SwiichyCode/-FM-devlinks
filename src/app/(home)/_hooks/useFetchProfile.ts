@@ -21,7 +21,7 @@ export default function useFetchProfile() {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false); // Set loading to false regardless of success or error
+        setIsLoading(false);
       }
     };
 

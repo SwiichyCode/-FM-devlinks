@@ -1,5 +1,10 @@
 import styled from "styled-components";
+import Link from "next/link";
 import { breakpoints } from "@/styles/breakpoints";
+
+export const LinkWrapper = styled(Link)`
+  text-decoration: none;
+`;
 
 export const ButtonWrapper = styled.button.withConfig({
   shouldForwardProp: (prop) =>
