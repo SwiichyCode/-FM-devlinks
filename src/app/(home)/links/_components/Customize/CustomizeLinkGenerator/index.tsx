@@ -83,10 +83,10 @@ export default function LinkGenerator({
           defaultValue={links[index].url}
           rules={{
             required: "Can’t be empty",
-            // pattern: {
-            //   value: /^(ftp|http|https):\/\/[^ "]+$/,
-            //   message: "Please enter a valid URL",
-            // },
+            pattern: {
+              value: /^(ftp|http|https):\/\/[^ "]+$/,
+              message: "Please enter a valid URL",
+            },
           }}
         />
       </S.LinkGeneratorInputWrapper>

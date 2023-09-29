@@ -1,5 +1,5 @@
 "use client";
-import useFetchLinks from "@/app/(home)/_hooks/useFetchLinks";
+import useFetchLinks from "@/app/(home)/_hooks/useFetchProfile";
 import PreviewPicture from "@/app/(home)/_components/Preview/PreviewPicture";
 import PreviewFullName from "@/app/(home)/_components/Preview/PreviewFullName";
 import PreviewEmail from "@/app/(home)/_components/Preview/PreviewEmail";

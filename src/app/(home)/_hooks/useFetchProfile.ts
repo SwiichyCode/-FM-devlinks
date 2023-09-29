@@ -1,27 +1,17 @@
 import { useEffect, useState } from "react";
-import ProfileService from "../../_services/profile.service";
+import ProfileService from "../_services/profile.service";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
-import useUserProfile from "../../_stores/useUserProfile";
 
 export default function useFetchProfile() {
   const { user } = useFetchUser();
-  const { profile } = useUserProfile();
-  const [data, setData] = useState<any>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    if (profile?.username) {
-      setData(profile);
-      return;
-    }
-
     const fetchProfile = async () => {
       try {
         const { data, error } = await ProfileService.getProfile(user.id);
         if (data) {
-          // Type this
           setData(data[0]);
         }
 
@@ -30,8 +20,11 @@ export default function useFetchProfile() {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false); // Set loading to false regardless of success or error
       }
     };
+
     fetchProfile();
   }, []);
 

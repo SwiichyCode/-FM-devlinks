@@ -8,6 +8,15 @@ const updateProfile = async (data: any, id: string) => {
   return { error };
 };
 
+const checkIfUsernameAlreadyExists = async (username: string) => {
+  const { data, error } = await supabase
+    .from("user")
+    .select("username")
+    .eq("username", username);
+
+  return { data, error };
+};
+
 const getProfile = async (id: string) => {
   const { data, error } = await supabase
     .from("user")
@@ -52,6 +61,7 @@ const uploadProfilePicture = async (file: any) => {
 
 const ProfileService = {
   updateProfile,
+  checkIfUsernameAlreadyExists,
   getProfile,
   getLinks,
   uploadProfilePicture,

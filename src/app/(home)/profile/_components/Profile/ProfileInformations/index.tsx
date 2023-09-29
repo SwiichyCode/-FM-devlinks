@@ -4,9 +4,10 @@ import * as S from "./styles";
 
 type Props = {
   profileData: Profile;
+  user: any;
 };
 
-export default function ProfileInformations({ profileData }: Props) {
+export default function ProfileInformations({ profileData, user }: Props) {
   return (
     <S.ProfileInformationsWrapper>
       <TextField
@@ -18,7 +19,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        // rules={{ required: "Can't be empty" }}
+        rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="firstname"
@@ -29,7 +30,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        // rules={{ required: "Can't be empty" }}
+        rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="lastname"
@@ -40,18 +41,19 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        // rules={{ required: "Can't be empty" }}
+        rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="email"
         labelText="Email"
         labelTheme="secondary"
         placeholder="e.g. email@example.com"
-        defaultValue={profileData?.email}
+        defaultValue={user?.email}
         type="email"
         isInlineFlex
         maxWidth={70}
-        // rules={{ required: "Can't be empty" }}
+        rules={{ required: "Can't be empty" }}
+        readOnly
       />
     </S.ProfileInformationsWrapper>
   );

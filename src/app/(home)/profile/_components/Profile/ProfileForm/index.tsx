@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import ProfileService from "@/app/(home)/_services/profile.service";
-import useFetchProfile from "../../../_hooks/useFetchProfile";
+import useFetchProfile from "@/app/(home)/_hooks/useFetchProfile";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
@@ -27,6 +27,9 @@ export default function ProfileForm() {
 
   const onSubmit: SubmitHandler<any> = async (formData) => {
     try {
+      // const { data: username, error } =
+      //   await ProfileService.checkIfUsernameAlreadyExists(formData.username);
+
       await ProfileService.updateProfile(
         {
           username: formData.username,
@@ -51,14 +54,17 @@ export default function ProfileForm() {
     }
   };
 
-  useEffect(() => {
-    if (data?.username) {
-      setProfile(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   setProfile(data);
+  // }, [P]);
 
   useEffect(() => {
-    methods.reset(data);
+    methods.reset({
+      username: data?.username,
+      firstname: data?.firstname,
+      lastname: data?.lastname,
+      email: data?.email,
+    });
   }, [data]);
 
   isLoading && <p>Loading...</p>;
@@ -71,7 +77,7 @@ export default function ProfileForm() {
           updateProfilePictureFile={updateProfilePictureFile}
           updateProfilePicture={updateProfilePicture}
         /> */}
-        <ProfileInformations profileData={data as Profile} />
+        <ProfileInformations profileData={data as Profile} user={user} />
         <S.FormSave>
           <Button type="submit" text="Save" theme="primary" maxContentWidth />
         </S.FormSave>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import ProfileService from "@/app/(home)/_services/profile.service";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
-import useFetchLinks from "@/app/(home)/_hooks/useFetchLinks";
+import useFetchProfile from "@/app/(home)/_hooks/useFetchProfile";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
 import EmptyForm from "../CustomizeEmpty";
@@ -18,7 +18,7 @@ export default function CustomizeForm() {
   // Refer to docs.MD for more info about this state
   const [linksChanged, setLinksChanged] = useState(false);
   const { links, setLinks } = useUserProfile();
-  const { data, isLoading } = useFetchLinks();
+  const { data, isLoading } = useFetchProfile();
   const { user } = useFetchUser();
   const methods = useForm();
 
