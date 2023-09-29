@@ -42,13 +42,13 @@ export default function CustomizeForm() {
   };
 
   useEffect(() => {
-    if (data.links?.length) {
+    if (data.links?.length && !lastLinkDeleted) {
       setLinks(data.links);
     }
   }, [data, error]);
 
   useEffect(() => {
-    if (links.length === 0 && lastLinkDeleted) {
+    if (links.length === 0 && data.links?.length > 0 && lastLinkDeleted) {
       const updateForm = async () => {
         await ProfileService.updateProfile({ links: [] }, user.id);
       };

@@ -49,8 +49,11 @@ export default function LinkGenerator({
 
   const handleDeleteLink = (id: string) => {
     deleteLink(id);
-    setLastLinkDeleted(true);
     setLinksChanged(true);
+
+    if (links.length === 1) {
+      setLastLinkDeleted(true);
+    }
   };
 
   return (
@@ -80,10 +83,10 @@ export default function LinkGenerator({
           defaultValue={links[index].url}
           rules={{
             required: "Can’t be empty",
-            pattern: {
-              value: /^(ftp|http|https):\/\/[^ "]+$/,
-              message: "Please enter a valid URL",
-            },
+            // pattern: {
+            //   value: /^(ftp|http|https):\/\/[^ "]+$/,
+            //   message: "Please enter a valid URL",
+            // },
           }}
         />
       </S.LinkGeneratorInputWrapper>

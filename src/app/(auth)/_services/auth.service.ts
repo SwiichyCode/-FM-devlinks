@@ -7,7 +7,7 @@ const signup = async (email: string, password: string) => {
     email,
     password,
     options: {
-      emailRedirectTo: `${location.origin}/login`,
+      emailRedirectTo: `${location.origin}/auth/callback`,
     },
   });
 

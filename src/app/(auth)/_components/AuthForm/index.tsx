@@ -43,8 +43,8 @@ export default function AuthForm({
         const { data, error } = await AuthService.login(email, password);
 
         localStorage.setItem("user", JSON.stringify(data.user));
-
         router.refresh();
+
         if (error) {
           throw new Error(error.message);
         } else {
@@ -57,7 +57,7 @@ export default function AuthForm({
         if (error) {
           throw new Error(error.message);
         } else {
-          router.push(urlRedirection);
+          router.push(`${urlRedirection}?email=${email}`);
           router.refresh();
         }
       }

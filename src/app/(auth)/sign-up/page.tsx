@@ -12,7 +12,7 @@ export default function SignUp() {
       textLink={AUTH_TEXT.SIGNUP_TEXT_LINK}
       link={AUTH_TEXT.SIGNUP_LINK}
       linkText={AUTH_TEXT.SIGNUP_LINK_TEXT}
-      urlRedirection={URL.LOGIN}
+      urlRedirection={URL.CONFIRM}
       isLogin={false}
     />
   );
