@@ -18,7 +18,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        rules={{ required: "Can't be empty" }}
+        // rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="firstname"
@@ -29,7 +29,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        rules={{ required: "Can't be empty" }}
+        // rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="lastname"
@@ -40,7 +40,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="text"
         isInlineFlex
         maxWidth={70}
-        rules={{ required: "Can't be empty" }}
+        // rules={{ required: "Can't be empty" }}
       />
       <TextField
         name="email"
@@ -51,7 +51,7 @@ export default function ProfileInformations({ profileData }: Props) {
         type="email"
         isInlineFlex
         maxWidth={70}
-        rules={{ required: "Can't be empty" }}
+        // rules={{ required: "Can't be empty" }}
       />
     </S.ProfileInformationsWrapper>
   );

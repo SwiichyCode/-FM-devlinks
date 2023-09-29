@@ -14,7 +14,7 @@ export default function PreviewFullName({
   isLoading,
   isPreviewPage = true,
 }: Props) {
-  const fullName = `${firstname} ${lastname}`;
+  const fullName = `${firstname ? firstname : ""} ${lastname ? lastname : ""}`;
   const fullNameCapitalized = capitalizeFirstLetterOfEachWord(fullName);
 
   return (
@@ -22,8 +22,9 @@ export default function PreviewFullName({
       as={"p"}
       isLoading={isLoading}
       isPreviewPage={isPreviewPage}
+      firstname={firstname}
     >
-      {fullNameCapitalized}
+      {!isLoading && fullNameCapitalized}
     </S.PreviewFullNameWrapper>
   );
 }

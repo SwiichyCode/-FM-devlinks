@@ -16,8 +16,9 @@ export default function PreviewEmail({
       as={"p"}
       isLoading={isLoading}
       isPreviewPage={isPreviewPage}
+      email={email}
     >
-      {email}
+      {!isLoading && email}
     </S.PreviewEmailWrapper>
   );
 }

@@ -5,15 +5,18 @@ import { SkeletonAnimation } from "../styles";
 import Link from "next/link";
 
 export const PreviewLinkWrapper = styled(SkeletonAnimation).withConfig({
-  shouldForwardProp: (prop) => !["name", "isPreviewPage"].includes(prop),
+  shouldForwardProp: (prop) =>
+    !["isLoading", "name", "isPreviewPage"].includes(prop),
 })<{ name: string; as: string; isPreviewPage: boolean }>`
   width: 100%;
-  height: ${({ isPreviewPage }) => (isPreviewPage ? "auto" : "4.4rem")};
+  height: ${({ isPreviewPage, isLoading }) =>
+    isPreviewPage ? isLoading && "5.6rem" : "4.4rem"};
   border-radius: 0.8rem;
-  background-color: ${({ name }) => linkBackground(name)};
+  background-color: ${({ isLoading, name }) =>
+    isLoading ? null : linkBackground(name)};
   color: ${({ name }) => (name === "frontendmentor" ? "#333" : "var(--white)")};
-  border: ${({ name }) =>
-    name === "frontendmentor" ? "1px solid #D9D9D9" : "none"};
+  border: ${({ isLoading, name }) =>
+    !isLoading && name === "frontendmentor" ? "1px solid #D9D9D9" : "none"};
   padding: ${({ isPreviewPage }) => (isPreviewPage ? "1.6rem" : "0 1.6rem")};
 `;
 

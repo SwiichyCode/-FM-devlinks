@@ -33,25 +33,31 @@ export default function PreviewLink({
           name={cleanString(platform)}
         >
           <S.DataWrapper>
-            <S.LinkIcon
-              src={`/images/preview-icon/icon-${cleanString(platform)}.svg`}
-              width={20}
-              height={20}
-              alt=""
-            />
-            <S.LinkName>{platform}</S.LinkName>
+            {!isLoading && (
+              <>
+                <S.LinkIcon
+                  src={`/images/preview-icon/icon-${cleanString(platform)}.svg`}
+                  width={20}
+                  height={20}
+                  alt=""
+                />
+                <S.LinkName>{platform}</S.LinkName>
+              </>
+            )}
           </S.DataWrapper>
 
-          <S.ArrowRight
-            src={
-              cleanString(platform) === "frontendmentor"
-                ? "/images/icon-arrow-right-dark.svg"
-                : "/images/icon-arrow-right.svg"
-            }
-            width={16}
-            height={16}
-            alt=""
-          />
+          {!isLoading && (
+            <S.ArrowRight
+              src={
+                cleanString(platform) === "frontendmentor"
+                  ? "/images/icon-arrow-right-dark.svg"
+                  : "/images/icon-arrow-right.svg"
+              }
+              width={16}
+              height={16}
+              alt=""
+            />
+          )}
         </S.LinkWrapper>
       )}
     </S.PreviewLinkWrapper>

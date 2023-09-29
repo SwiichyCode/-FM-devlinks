@@ -7,13 +7,13 @@ export default function useFetchLinks() {
   const { user } = useFetchUser();
   const { links } = useUserProfile();
   const [data, setData] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchLinks = async () => {
-      setIsLoading(true); // Set loading to true when starting the fetch
+      // setIsLoading(true); // Set loading to true when starting the fetch
       try {
-        const { data, error } = await ProfileService.getLinks(user.id);
+        const { data, error } = await ProfileService.getProfile(user.id);
         if (data) {
           setData(data[0]);
         }
@@ -28,10 +28,8 @@ export default function useFetchLinks() {
       }
     };
 
-    if (links.length === 0) {
-      fetchLinks();
-    }
-  }, [links]);
+    fetchLinks();
+  }, []);
 
   return { data, isLoading };
 }

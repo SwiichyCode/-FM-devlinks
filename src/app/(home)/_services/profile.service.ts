@@ -17,7 +17,8 @@ const getProfile = async (id: string) => {
       username,
       firstname,
       lastname,
-      email
+      email,
+      links
     `
     )
     .eq("id", id);
