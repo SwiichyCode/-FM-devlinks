@@ -12,7 +12,7 @@ export default async function Layout({ children }: Props) {
   return (
     <ProtectedRoute>
       <PreviewLayout>
-        <Header />
+        <Header isView={false} />
 
         {children}
       </PreviewLayout>
