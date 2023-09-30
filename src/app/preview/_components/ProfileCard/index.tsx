@@ -7,8 +7,12 @@ import { PreviewLinks } from "@/app/(home)/_components/Preview/styles";
 import PreviewLink from "@/app/(home)/_components/Preview/PreviewLink";
 import * as S from "./styles";
 
-export default function ProfileCard() {
-  const { data, isLoading } = useFetchProfile();
+type Props = {
+  data: any;
+  isLoading: boolean;
+};
+
+export default function ProfileCard({ data, isLoading }: Props) {
   const { profilePicture, firstname, lastname, email } = data;
   const { links } = data;
 

@@ -7,13 +7,13 @@ import useUserProfile from "@/app/(home)/_stores/useUserProfile";
 import Button from "@/components/ui/Button";
 import ProfilePicture from "../ProfilePicture";
 import ProfileInformations from "../ProfileInformations";
-import Notification from "@/app/(home)/_components/Notification";
+import Notification from "@/components/ui/Notification";
 import type { Profile } from "@/app/(home)/_types/profile.type";
 import * as S from "./styles";
 
 export default function ProfileForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
-
+  // const [profileChanged, setProfileChanged] = useState(false);
   const { data, isLoading } = useFetchProfile();
   const { user } = useFetchUser();
 
@@ -44,6 +44,7 @@ export default function ProfileForm() {
       //   profile.profilePictureFile
       // );
 
+      // setProfileChanged(false);
       setFormSubmitted(true);
 
       setTimeout(() => {
@@ -54,10 +55,6 @@ export default function ProfileForm() {
     }
   };
 
-  // useEffect(() => {
-  //   setProfile(data);
-  // }, [P]);
-
   useEffect(() => {
     methods.reset({
       username: data?.username,
@@ -67,8 +64,6 @@ export default function ProfileForm() {
     });
   }, [data]);
 
-  isLoading && <p>Loading...</p>;
-
   return (
     <FormProvider {...methods}>
       <S.FormWrapper onSubmit={methods.handleSubmit(onSubmit)}>
@@ -77,17 +72,26 @@ export default function ProfileForm() {
           updateProfilePictureFile={updateProfilePictureFile}
           updateProfilePicture={updateProfilePicture}
         /> */}
-        <ProfileInformations profileData={data as Profile} user={user} />
+        <ProfileInformations
+          profileData={data as Profile}
+          user={user}
+          // setProfileChanged={setProfileChanged}
+        />
         <S.FormSave>
-          <Button type="submit" text="Save" theme="primary" maxContentWidth />
+          <Button
+            type="submit"
+            text="Save"
+            theme="primary"
+            maxContentWidth
+            // disabled={!profileChanged}
+          />
         </S.FormSave>
 
-        {formSubmitted && (
-          <Notification
-            icon="/images/icon-changes-saved.svg"
-            message="Your changes have been succesfully saved!"
-          />
-        )}
+        <Notification
+          icon="/images/icon-changes-saved.svg"
+          message="Your changes have been succesfully saved!"
+          show={formSubmitted}
+        />
       </S.FormWrapper>
     </FormProvider>
   );

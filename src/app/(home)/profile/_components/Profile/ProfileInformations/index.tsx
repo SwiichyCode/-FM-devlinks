@@ -5,9 +5,14 @@ import * as S from "./styles";
 type Props = {
   profileData: Profile;
   user: any;
+  // setProfileChanged: (value: boolean) => void;
 };
 
-export default function ProfileInformations({ profileData, user }: Props) {
+export default function ProfileInformations({
+  profileData,
+  user,
+}: // setProfileChanged,
+Props) {
   return (
     <S.ProfileInformationsWrapper>
       <TextField

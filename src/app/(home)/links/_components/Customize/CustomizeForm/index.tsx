@@ -8,7 +8,7 @@ import Button from "@/components/ui/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
-import Notification from "@/app/(home)/_components/Notification";
+import Notification from "@/components/ui/Notification";
 import * as S from "./styles";
 
 export default function CustomizeForm() {
@@ -92,16 +92,15 @@ export default function CustomizeForm() {
           />
         </S.FormSave>
 
-        {(formSubmitted || error) && (
-          <Notification
-            icon="/images/icon-changes-saved.svg"
-            message={
-              formSubmitted
-                ? "Your changes have been succesfully saved!"
-                : "Something went wrong!"
-            }
-          />
-        )}
+        <Notification
+          icon="/images/icon-changes-saved.svg"
+          message={
+            formSubmitted
+              ? "Your changes have been succesfully saved!"
+              : "Something went wrong!"
+          }
+          show={formSubmitted || error}
+        />
       </S.FormWrapper>
     </FormProvider>
   );
