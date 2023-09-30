@@ -12,7 +12,7 @@ export default function ViewPage() {
 
   return (
     <PreviewLayout>
-      <Header />
+      <Header isView />
       <ProfileCard data={data} isLoading={isLoading} />
     </PreviewLayout>
   );

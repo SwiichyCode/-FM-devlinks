@@ -1,11 +1,8 @@
 import { useState } from "react";
-import Button from "@/components/ui/Button";
-import * as S from "./styles";
-
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import Notification from "@/components/ui/Notification";
-
-export const dynamic = "force-dynamic";
+import Button from "@/components/ui/Button";
+import * as S from "./styles";
 
 export default function Navigation() {
   const [linkShared, setLinkShared] = useState(false);
