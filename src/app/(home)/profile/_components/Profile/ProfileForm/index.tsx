@@ -46,7 +46,7 @@ export default function ProfileForm() {
       //   profile.profilePictureFile
       // );
 
-      // setProfileChanged(false);
+      setProfileChanged(false);
       setFormSubmitted(true);
 
       setTimeout(() => {

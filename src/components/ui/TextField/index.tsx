@@ -13,7 +13,7 @@ export default function TextField({
   errorMessage,
   rules,
   onChange,
-  useRegister = true,
+
   isInlineFlex,
   maxWidth,
   ...props
@@ -44,11 +44,8 @@ export default function TextField({
         {iconSrc && (
           <S.TextFieldIcon src={iconSrc} width={16} height={16} alt="" />
         )}
-        {useRegister ? (
-          <S.TextFieldInput {...register?.(name || "", rules)} {...props} />
-        ) : (
-          <S.TextFieldInput onChange={onChange} {...props} />
-        )}
+
+        <S.TextFieldInput {...register?.(name || "", rules)} {...props} />
 
         {formState.errors[name] && (
           <S.TextFieldError>
