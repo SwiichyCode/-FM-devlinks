@@ -13,7 +13,7 @@ import * as S from "./styles";
 
 export default function ProfileForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  // const [profileChanged, setProfileChanged] = useState(false);
+  const [profileChanged, setProfileChanged] = useState(false);
   const { data, isLoading } = useFetchProfile();
   const { user } = useFetchUser();
 
@@ -26,6 +26,8 @@ export default function ProfileForm() {
   const methods = useForm();
 
   const onSubmit: SubmitHandler<any> = async (formData) => {
+    if (!profileChanged) return;
+
     try {
       // const { data: username, error } =
       //   await ProfileService.checkIfUsernameAlreadyExists(formData.username);
@@ -75,7 +77,7 @@ export default function ProfileForm() {
         <ProfileInformations
           profileData={data as Profile}
           user={user}
-          // setProfileChanged={setProfileChanged}
+          setProfileChanged={setProfileChanged}
         />
         <S.FormSave>
           <Button
@@ -83,7 +85,7 @@ export default function ProfileForm() {
             text="Save"
             theme="primary"
             maxContentWidth
-            // disabled={!profileChanged}
+            disabled={!profileChanged}
           />
         </S.FormSave>
 

@@ -5,14 +5,43 @@ import * as S from "./styles";
 type Props = {
   profileData: Profile;
   user: any;
-  // setProfileChanged: (value: boolean) => void;
+  setProfileChanged: (value: boolean) => void;
 };
+
+type FormInputs = {
+  username: string;
+  firstname: string;
+  lastname: string;
+  email?: string;
+};
+
+import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 
 export default function ProfileInformations({
   profileData,
   user,
-}: // setProfileChanged,
-Props) {
+  setProfileChanged,
+}: Props) {
+  const { watch } = useFormContext();
+
+  useEffect(() => {
+    const checkProfileChange = (value: FormInputs) => {
+      const isEqualValue =
+        value.username === profileData.username &&
+        value.firstname === profileData.firstname &&
+        value.lastname === profileData.lastname;
+
+      setProfileChanged(!isEqualValue);
+    };
+
+    const subscription = watch((value) => {
+      checkProfileChange(value as FormInputs);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch, profileData]);
+
   return (
     <S.ProfileInformationsWrapper>
       <TextField
