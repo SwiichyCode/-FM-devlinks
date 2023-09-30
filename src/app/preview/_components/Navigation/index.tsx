@@ -5,6 +5,8 @@ import * as S from "./styles";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import Notification from "@/components/ui/Notification";
 
+export const dynamic = "force-dynamic";
+
 export default function Navigation() {
   const [linkShared, setLinkShared] = useState(false);
   const { user } = useFetchUser();

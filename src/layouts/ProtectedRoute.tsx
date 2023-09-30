@@ -7,8 +7,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function ProtectedRoute({ children }: Props) {
   const supabase = createServerComponentClient({ cookies });
   const {
