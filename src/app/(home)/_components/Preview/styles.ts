@@ -19,69 +19,69 @@ export const SkeletonAnimation = styled.div.withConfig({
 
 export const PreviewContainer = styled.div`
   width: 100%;
-  max-width: calc(56rem - 4.8rem);
-  min-height: 63.1rem;
-  height: calc(100% - 4.8rem);
+  max-width: calc(560px - 48px);
+  min-height: 631px;
+  height: calc(100% - 48px);
   ${({ theme }) => theme.mixins.flexCenter};
   border-radius: var(--rounded);
   background-color: var(--white);
-  padding: 2.4rem;
+  padding: 24px;
   box-sizing: content-box;
 `;
 
 export const IllustrationMockup = styled.div`
   width: 100%;
-  min-height: 63.1rem;
+  min-height: 631px;
   ${({ theme }) => theme.mixins.flexColumnCenter};
   background: url("/images/illustration-phone-mockup.svg") no-repeat center
     center;
 `;
 
 export const PreviewResult = styled.div`
-  width: 23.7rem;
-  height: 51.4rem;
+  width: 237px;
+  height: 514px;
   ${({ theme }) => theme.mixins.flexColumnItems};
-  gap: 5.6rem;
+  gap: 56px;
 `;
 
 export const PreviewHeader = styled.div`
-  height: 15.8rem;
+  height: 158px;
   ${({ theme }) => theme.mixins.flexColumnItems};
-  margin-top: 0.5rem;
+  margin-top: 5px;
 `;
 
 export const SkeletonPicture = styled(SkeletonAnimation)`
-  width: 9.6rem;
-  height: 9.6rem;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 25px;
 `;
 
 export const SkeletonFullName = styled(SkeletonAnimation)`
-  width: 16rem;
-  height: 1.6rem;
-  border-radius: 10.4rem;
-  margin-bottom: 1.3rem;
+  width: 160px;
+  height: 16px;
+  border-radius: 104px;
+  margin-bottom: 13px;
 `;
 
 export const SkeletonEmail = styled(SkeletonAnimation)`
-  width: 7.2rem;
-  height: 0.8rem;
-  border-radius: 10.4rem;
+  width: 72px;
+  height: 8px;
+  border-radius: 104px;
 `;
 
 export const SkeletonLink = styled(SkeletonAnimation)`
   width: 100%;
-  height: 4.4rem;
-  border-radius: 0.8rem;
+  height: 44px;
+  border-radius: 8px;
 `;
 
 export const PreviewLinks = styled.ul.withConfig({
   shouldForwardProp: (prop) => !["isPreviewPage"].includes(prop),
 })<{ isPreviewPage?: boolean }>`
   ${({ theme }) => theme.mixins.flexColumn};
-  width: 23.7rem;
-  height: ${({ isPreviewPage }) => (isPreviewPage ? "auto" : "30rem")};
-  gap: 2rem;
-  ${({ isPreviewPage }) => isPreviewPage && `margin-top: 5.6rem;`};
+  width: 237px;
+  height: ${({ isPreviewPage }) => (isPreviewPage ? "auto" : "300px")};
+  gap: 20px;
+  ${({ isPreviewPage }) => isPreviewPage && `margin-top: 56px;`};
 `;

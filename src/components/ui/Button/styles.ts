@@ -10,7 +10,7 @@ export const ButtonWrapper = styled.button.withConfig({
   shouldForwardProp: (prop) =>
     !["disabled", "theme", "maxContentWidth", "withIcon"].includes(prop),
 })<{
-  disabled: boolean | undefined;
+  // disabled: boolean | undefined;
   theme?: "primary" | "secondary";
   maxContentWidth?: boolean;
   withIcon?: boolean;
@@ -20,8 +20,8 @@ export const ButtonWrapper = styled.button.withConfig({
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
   color: ${({ theme }) =>
     theme === "primary" ? "var(--white)" : "var(--purple)"};
@@ -32,7 +32,7 @@ export const ButtonWrapper = styled.button.withConfig({
   outline: ${({ theme }) =>
     theme === "primary" ? "none" : "1px solid var(--purple)"};
   outline-offset: -2px;
-  padding: 1.1rem 2.7rem;
+  padding: 11px 27px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
   transition-property: background-color, box-shadow;
@@ -57,6 +57,6 @@ export const ButtonWrapper = styled.button.withConfig({
   }
 
   @media screen and (max-width: ${breakpoints.tablet}) {
-    ${({ withIcon }) => withIcon && "padding: 1.1rem 1.6rem;"}
+    ${({ withIcon }) => withIcon && "padding: 11px 16px;"}
   }
 `;

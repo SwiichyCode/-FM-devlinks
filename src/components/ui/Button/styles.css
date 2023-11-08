@@ -1,0 +1,20 @@
+.btn {
+  @apply bg-[#633CFF] hover:bg-[#BEADFF] hover:shadow-active;
+  @apply text-white text-base font-semibold;
+  @apply h-[46px] px-7 rounded-lg;
+  @apply transition-all;
+
+  &:disabled {
+    @apply opacity-25 hover:bg-[#633CFF];
+  }
+}
+
+.btn-secondary {
+  @apply bg-transparent hover:bg-[#EFEBFF];
+  @apply border border-[#633CFF];
+  @apply text-[#633CFF];
+
+  &:hover {
+    @apply shadow-inherit;
+  }
+}

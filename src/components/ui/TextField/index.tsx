@@ -12,8 +12,6 @@ export default function TextField({
   name,
   errorMessage,
   rules,
-  onChange,
-
   isInlineFlex,
   maxWidth,
   ...props

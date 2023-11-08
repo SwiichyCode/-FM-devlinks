@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import ProfileService from "@/app/(home)/_services/profile.service";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import useFetchProfile from "@/app/(home)/_hooks/useFetchProfile";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/Button/Button";
 import EmptyForm from "../CustomizeEmpty";
 import LinkGenerator from "../CustomizeLinkGenerator";
 import CustomizeAddLink from "../CustomizeAddLink";
@@ -15,15 +15,14 @@ export default function CustomizeForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [lastLinkDeleted, setLastLinkDeleted] = useState(false);
   const [error, setError] = useState(false);
-  // Refer to docs.MD for more info about this state
   const [linksChanged, setLinksChanged] = useState(false);
-  const { links, setLinks } = useUserProfile();
-  const { data, isLoading } = useFetchProfile();
+  const { links } = useUserProfile();
+  const { data, isLoading } = useFetchProfile({ isLinks: true });
   const { user } = useFetchUser();
   const methods = useForm();
 
   const onsubmit: SubmitHandler<any> = async () => {
-    if (links.length === 0 || !linksChanged) return;
+    // if (links.length === 0 || !linksChanged) return;
 
     try {
       const { error } = await ProfileService.updateProfile({ links }, user.id);
@@ -41,22 +40,6 @@ export default function CustomizeForm() {
     }
   };
 
-  useEffect(() => {
-    if (data.links?.length && !lastLinkDeleted) {
-      setLinks(data.links);
-    }
-  }, [data, error]);
-
-  useEffect(() => {
-    if (links.length === 0 && data.links?.length > 0 && lastLinkDeleted) {
-      const updateForm = async () => {
-        await ProfileService.updateProfile({ links: [] }, user.id);
-      };
-
-      updateForm();
-    }
-  }, [links, lastLinkDeleted]);
-
   if (isLoading) return null;
 
   return (
@@ -64,7 +47,7 @@ export default function CustomizeForm() {
       <S.FormWrapper onSubmit={methods.handleSubmit(onsubmit)}>
         <CustomizeAddLink setLinksChanged={setLinksChanged} />
 
-        {links.length > 0 ? (
+        {links.length ? (
           <>
             <S.LinksWrapper>
               {links.map(({ id }, index: number) => (
@@ -83,13 +66,9 @@ export default function CustomizeForm() {
         )}
 
         <S.FormSave>
-          <Button
-            type="submit"
-            text="Save"
-            theme="primary"
-            disabled={links.length === 0 || !linksChanged}
-            maxContentWidth
-          />
+          <Button type="submit" disabled={!links.length || !linksChanged}>
+            Save
+          </Button>
         </S.FormSave>
 
         <Notification

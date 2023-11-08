@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.form`
   ${({ theme }) => theme.mixins.flexColumn};
-  gap: 2.4rem;
+  gap: 24px;
 `;
 
 export const FormSave = styled.div`
@@ -10,7 +10,7 @@ export const FormSave = styled.div`
   display: flex;
   justify-content: flex-end;
   height: max-content;
-  border-top: 0.1rem solid var(--grey-500);
-  padding: 2.4rem 4rem;
+  border-top: 1px solid var(--grey-500);
+  padding: 24px 40px;
   margin: 0 0;
 `;

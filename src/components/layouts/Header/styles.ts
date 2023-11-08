@@ -7,16 +7,16 @@ export const HeaderWrapper = styled.header`
   ${({ theme }) => theme.mixins.flexBetween};
   border-radius: var(--rounded);
   background-color: var(--white);
-  padding: 2.4rem;
-  margin: 2.4rem;
+  padding: 24px;
+  margin: 24px;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
-    margin: 0 0 2.4rem 0;
+    margin: 0 0 24px 0;
   }
 `;
 
 export const ButtonWrapper = styled.div`
   float: right;
   display: flex;
-  gap: 1.6rem;
+  gap: 16px;
 `;

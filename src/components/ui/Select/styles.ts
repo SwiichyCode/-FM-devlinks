@@ -5,12 +5,12 @@ import { TextFieldWrapper } from "../TextField/styles";
 export const SelectContainer = styled.div`
   position: relative;
   ${({ theme }) => theme.mixins.flexColumn};
-  gap: 0.4rem;
+  gap: 4px;
 `;
 
 export const SelectLabel = styled.label`
-  font-size: 1.4rem;
-  line-height: 2.4rem;
+  font-size: 14px;
+  line-height: 24px;
   color: var(--grey-800);
 `;
 
@@ -22,10 +22,10 @@ export const SelectInput = styled(TextFieldWrapper)`
 export const SelectInputText = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  font-size: 16px;
+  line-height: 24px;
   color: var(--grey-800);
-  gap: 1.4rem;
+  gap: 14px;
 `;
 
 export const SelectChevronIcon = styled(Image).withConfig({
@@ -37,29 +37,29 @@ export const SelectChevronIcon = styled(Image).withConfig({
 
 export const SelectOptions = styled.div`
   width: 100%;
-  max-height: 24.5rem;
+  max-height: 245px;
   overflow-y: auto;
   position: absolute;
-  top: calc(100% + 0.8rem);
+  top: calc(100% + 8px);
   background-color: var(--white);
-  border: 0.1rem solid var(--grey-500);
+  border: 1px solid var(--grey-500);
   border-radius: var(--rounded-sm);
   box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.1);
-  padding: 0 1.6rem;
+  padding: 0 16px;
   z-index: 10;
 
   &::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
     background: var(--grey-500);
-    border-radius: 0.8rem;
+    border-radius: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: var(--purple);
-    border-radius: 0.8rem;
+    border-radius: 8px;
   }
 `;
 
@@ -68,17 +68,17 @@ export const SelectOption = styled.div.withConfig({
 })<{ selectedOption: string; option: string }>`
   display: flex;
   align-items: center;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  font-size: 16px;
+  line-height: 24px;
   color: var(--grey-800);
   color: ${({ selectedOption, option }) =>
     selectedOption === option ? "var(--purple)" : "var(--grey-800)"};
-  padding: 1.2rem 0;
-  gap: 1.4rem;
+  padding: 12px 0;
+  gap: 14px;
   cursor: pointer;
 
   &:not(:last-child) {
-    border-bottom: 0.1rem solid var(--grey-500);
+    border-bottom: 1px solid var(--grey-500);
   }
 `;
 

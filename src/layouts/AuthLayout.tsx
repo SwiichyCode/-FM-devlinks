@@ -10,12 +10,12 @@ const AuthLayoutWrapper = styled.div`
   height: 100vh;
   ${({ theme }) => theme.mixins.flexCenter}
   flex-direction: column;
-  gap: 5.1rem;
+  gap: 51px;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 3.2rem;
+    padding: 32px;
   }
 `;
 

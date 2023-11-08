@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2.4rem;
+  gap: 24px;
 `;
 
 export const ProfilePictureWrapper = styled.div`
@@ -14,13 +14,13 @@ export const ProfilePictureWrapper = styled.div`
   flex-wrap: wrap;
   border-radius: var(--rounded);
   background-color: var(--grey-300);
-  padding: 2rem;
-  gap: 1.6rem;
+  padding: 20px;
+  gap: 16px;
 `;
 
 export const ProfilePictureTitle = styled.h2`
   width: 100%;
-  max-width: 24rem;
+  max-width: 240px;
   color: var(--grey);
 `;
 
@@ -32,8 +32,8 @@ export const ProfilePictureInputWrapper = styled.div.withConfig({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 19.3rem;
-  height: 19.3rem;
+  width: 193px;
+  height: 193px;
   border-radius: var(--rounded);
   background-color: #efebff;
   background-image: ${({ profilePicture }) =>
@@ -45,12 +45,12 @@ export const ProfilePictureInputWrapper = styled.div.withConfig({
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 8px;
 
     span {
       color: ${({ profilePicture }) =>
         profilePicture ? "var(--white)" : "#633cff"};
-      font-size: 1.6rem;
+      font-size: 16px;
       font-weight: 600;
     }
   }
@@ -69,9 +69,9 @@ export const ProfilePictureInformation = styled.p.withConfig({
   shouldForwardProp: (prop) => !["errorPictureFormat"].includes(prop),
 })<{ errorPictureFormat: boolean }>`
   width: 100%;
-  max-width: 21.5rem;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  max-width: 215px;
+  font-size: 12px;
+  line-height: 18px;
 
   color: ${({ errorPictureFormat }) =>
     errorPictureFormat ? "var(--red)" : "var(--grey)"};

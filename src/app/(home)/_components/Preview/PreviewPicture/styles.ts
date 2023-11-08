@@ -5,7 +5,7 @@ export const PreviewPictureWrapper = styled(SkeletonPicture).withConfig({
   shouldForwardProp: (prop) =>
     !["isLoading", "picture", "isPreviewPage"].includes(prop),
 })<{ picture: string; isPreviewPage: boolean }>`
-  ${({ isPreviewPage }) => isPreviewPage && `width: 10.4rem; height: 10.4rem`};
+  ${({ isPreviewPage }) => isPreviewPage && `width: 104px; height: 104px`};
   background-image: ${({ picture, isLoading }) =>
     !isLoading && `url(${picture})`};
   background-size: ${({ isLoading }) => !isLoading && `cover`};

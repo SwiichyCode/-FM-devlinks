@@ -4,7 +4,7 @@ import ProfileService from "@/app/(home)/_services/profile.service";
 import useFetchProfile from "@/app/(home)/_hooks/useFetchProfile";
 import useFetchUser from "@/app/(auth)/_hooks/useFetchUser";
 import useUserProfile from "@/app/(home)/_stores/useUserProfile";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/Button/Button";
 import ProfilePicture from "../ProfilePicture";
 import ProfileInformations from "../ProfileInformations";
 import Notification from "@/components/ui/Notification";
@@ -80,13 +80,7 @@ export default function ProfileForm() {
           setProfileChanged={setProfileChanged}
         />
         <S.FormSave>
-          <Button
-            type="submit"
-            text="Save"
-            theme="primary"
-            maxContentWidth
-            disabled={!profileChanged}
-          />
+          <Button disabled={!profileChanged}>Save</Button>
         </S.FormSave>
 
         <Notification

@@ -1,3 +1,4 @@
+import { Heading, Paragraph } from "@/styles/typography";
 import * as S from "./styles";
 
 type Props = {
@@ -10,8 +11,8 @@ export default function FormLayout({ title, subtitle, children }: Props) {
   return (
     <S.FormWrapper>
       <S.FormHeader>
-        <S.FormTitle>{title}</S.FormTitle>
-        <S.FormSubtitle>{subtitle}</S.FormSubtitle>
+        <Heading as={"h1"}>{title}</Heading>
+        <Paragraph>{subtitle}</Paragraph>
       </S.FormHeader>
       {children}
     </S.FormWrapper>

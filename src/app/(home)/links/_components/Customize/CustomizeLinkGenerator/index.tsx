@@ -48,12 +48,13 @@ export default function LinkGenerator({
   }, [watch]);
 
   const handleDeleteLink = (id: string) => {
+    // if (links.length <= 1) {
+    //   setLastLinkDeleted(true);
+    //   // setLinksChanged(true);
+    // }
+
     deleteLink(id);
     setLinksChanged(true);
-
-    if (links.length === 1) {
-      setLastLinkDeleted(true);
-    }
   };
 
   return (

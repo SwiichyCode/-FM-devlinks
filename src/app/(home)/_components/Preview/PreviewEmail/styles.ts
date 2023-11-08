@@ -6,11 +6,10 @@ export const PreviewEmailWrapper = styled(SkeletonEmail).withConfig({
     !["isLoading", "isPreviewPage", "email"].includes(prop),
 })<{ isPreviewPage: boolean; email: string }>`
   width: 100%;
-  height: ${({ isLoading, email }) =>
-    isLoading || !email ? "2.4rem" : `auto`};
+  height: ${({ isLoading, email }) => (isLoading || !email ? "24px" : `auto`)};
   text-align: center;
-  font-size: ${({ isPreviewPage }) => (isPreviewPage ? `1.6rem` : `1.4rem`)};
-  line-height: ${({ isPreviewPage }) => (isPreviewPage ? `2.4rem` : `2.1rem`)};
+  font-size: ${({ isPreviewPage }) => (isPreviewPage ? `16px` : `14px`)};
+  line-height: ${({ isPreviewPage }) => (isPreviewPage ? `24px` : `21px`)};
   font-weight: 400;
   color: var(--grey);
   background: ${({ isLoading, email }) =>

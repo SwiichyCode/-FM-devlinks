@@ -1,0 +1,9 @@
+@import "../components/ui/Button/styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* button[type="submit"] {
+  @apply bg-[#633CFF];
+} */

@@ -10,7 +10,7 @@ export const TextFieldContainer = styled.div.withConfig({
       ? "display: flex; align-items: center; justify-content: space-between;"
       : theme.mixins.flexColumn};
 
-  gap: 0.4rem;
+  gap: 4px;
 `;
 
 export const TextFieldWrapper = styled.div.withConfig({
@@ -28,25 +28,25 @@ export const TextFieldWrapper = styled.div.withConfig({
       ? null
       : isFocused && "box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);"};
   background-color: var(--white);
-  padding: 1.2rem 1.6rem;
-  gap: 1.2rem;
+  padding: 12px 16px;
+  gap: 12px;
   transition: all 0.2s ease-in-out;
   cursor: text;
 
   border: ${({ error, isFocused }) =>
     error
-      ? "0.1rem solid var(--red)"
+      ? "1px solid var(--red)"
       : isFocused
-      ? "0.1rem solid var(--purple)"
-      : "0.1rem solid var(--grey-500)"};
+      ? "1px solid var(--purple)"
+      : "1px solid var(--grey-500)"};
 `;
 
 export const TextFieldIcon = styled(Image)``;
 
 export const TextFieldInput = styled.input`
   width: 100%;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
+  font-size: 16px;
+  line-height: 24px;
   color: var(--grey-800);
   border: none;
 
@@ -58,7 +58,7 @@ export const TextFieldInput = styled.input`
 export const TextFieldError = styled.p`
   width: 100%;
   text-align: right;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  font-size: 12px;
+  line-height: 18px;
   color: var(--red);
 `;

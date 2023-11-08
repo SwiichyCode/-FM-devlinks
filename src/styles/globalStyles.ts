@@ -9,14 +9,9 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }         
 
-    html {
-        font-size: 62.5%;
-
-    }
-
     body {
        background-color: var(--grey-300);
-       font-size: 1.6rem;
+       font-size: 16px;
     }
 
     :root {
@@ -31,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
         --red: #FF3939;
 
 
-        --rounded: 1.2rem;
-        --rounded-sm: 0.8rem;
+        --rounded: 12px;
+        --rounded-sm: 8px;
     }
 `;

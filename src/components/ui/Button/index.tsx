@@ -4,7 +4,7 @@ import { LinkWrapper, ButtonWrapper } from "./styles";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string | null;
   iconSrc?: string | null;
-  disabled?: boolean;
+  // disabled?: boolean;
   theme?: "primary" | "secondary";
   maxContentWidth?: boolean;
   withLink?: boolean;
@@ -30,7 +30,6 @@ export default function Button({
   type = "button",
   text,
   iconSrc,
-  disabled,
   theme = "primary",
   maxContentWidth,
   withLink,
@@ -42,7 +41,6 @@ export default function Button({
     <RenderButton withLink={withLink} href={href}>
       <ButtonWrapper
         type={type}
-        disabled={disabled}
         theme={theme}
         maxContentWidth={maxContentWidth}
         {...props}

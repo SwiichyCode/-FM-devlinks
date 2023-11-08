@@ -1,3 +1,4 @@
+import { Heading, Paragraph } from "@/styles/typography";
 import * as S from "./styles";
 
 export default function CustomizeEmpty() {
@@ -9,13 +10,15 @@ export default function CustomizeEmpty() {
         src="/images/illustration-empty.svg"
         alt="Illustration"
       />
+
       <S.EmptyDescriptionWrapper>
-        <S.EmptyDescriptionTitle>Let’s get you started</S.EmptyDescriptionTitle>
-        <S.EmptyDescriptionSubtitle>
+        <Heading as="h2">Let’s get you started</Heading>
+
+        <Paragraph>
           Use the “Add new link” button to get started. Once you have more than
           one link, you can reorder and edit them. We’re here to help you share
           your profiles with everyone!
-        </S.EmptyDescriptionSubtitle>
+        </Paragraph>
       </S.EmptyDescriptionWrapper>
     </S.EmptyWrapper>
   );

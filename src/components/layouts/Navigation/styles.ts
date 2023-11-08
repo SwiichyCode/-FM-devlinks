@@ -14,15 +14,15 @@ export const NavigationLink = styled(Link).withConfig({
   shouldForwardProp: (prop) => !["active"].includes(prop),
 })<{ active: boolean }>`
   ${({ theme }) => theme.mixins.flexAlignCenter};
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 2.4rem;
+  line-height: 24px;
   color: ${({ active }) => (active ? "var(--purple)" : "var(--grey)")};
   background-color: ${({ active }) => (active ? "var(--purple-300)" : "none")};
   border-radius: var(--rounded);
   text-decoration: none;
-  padding: 1.1rem 2.7rem;
-  gap: 0.8rem;
+  padding: 11px 27px;
+  gap: 8px;
   transition: color 0.2s ease-in-out;
 
   &:hover {

@@ -4,12 +4,12 @@ import { breakpoints } from "@/styles/breakpoints";
 
 export const AuthFormWrapper = styled.div`
   width: 100%;
-  max-width: 47.6rem;
+  max-width: 476px;
   ${({ theme }) => theme.mixins.flexColumnItems};
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     align-items: flex-start;
-    gap: 7.1rem;
+    gap: 71px;
   }
 `;
 
@@ -17,7 +17,7 @@ export const AuthCard = styled.div`
   width: 100%;
   background-color: var(--white);
   border-radius: var(--rounded);
-  padding: 4rem;
+  padding: 40px;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     background-color: transparent;
@@ -27,12 +27,12 @@ export const AuthCard = styled.div`
 
 export const AuthCardHeader = styled.div`
   ${({ theme }) => theme.mixins.flexColumn};
-  gap: 0.8rem;
+  gap: 8px;
 `;
 
 export const AuthCardTitle = styled.h1`
-  font-size: 3.2rem;
-  line-height: 4.8rem;
+  font-size: 32px;
+  line-height: 48px;
   font-weight: 700;
   color: var(--grey-800);
 `;
@@ -43,7 +43,7 @@ export const AuthCardText = styled.p`
 
 export const AuthCardFooter = styled.div`
   ${({ theme }) => theme.mixins.flexJustifyCenter};
-  gap: 0.2rem;
+  gap: 2px;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
@@ -56,6 +56,6 @@ export const AuthCardLink = styled(Link)`
   color: var(--purple);
 
   @media screen and (max-width: ${breakpoints.mobile}) {
-    line-height: 2.4rem;
+    line-height: 24px;
   }
 `;

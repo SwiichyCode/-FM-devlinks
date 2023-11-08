@@ -7,11 +7,11 @@ export const PreviewFullNameWrapper = styled(SkeletonFullName).withConfig({
 })<{ isPreviewPage: boolean; firstname: string }>`
   width: 100%;
   height: ${({ isLoading, firstname }) =>
-    isLoading || !firstname ? "4.8rem" : `auto`};
+    isLoading || !firstname ? "48px" : `auto`};
   text-align: center;
-  font-size: ${({ isPreviewPage }) => (isPreviewPage ? `3.2rem` : `1.8rem`)};
+  font-size: ${({ isPreviewPage }) => (isPreviewPage ? `32px` : `18px`)};
   font-weight: ${({ isPreviewPage }) => (isPreviewPage ? `700` : `600`)};
-  line-height: ${({ isPreviewPage }) => (isPreviewPage ? `4.8rem` : `2.7rem`)};
+  line-height: ${({ isPreviewPage }) => (isPreviewPage ? `48px` : `27px`)};
   color: var(--grey-800);
   background: ${({ isLoading, firstname }) =>
     isLoading || !firstname ? null : `transparent`};

@@ -5,6 +5,6 @@ export const LabelContainer = styled.label.withConfig({
 })<{ labelTheme: "primary" | "secondary" | undefined }>`
   ${({ labelTheme }) =>
     labelTheme === "primary"
-      ? "font-size: 1.4rem; font-weight: 400; line-height: 2.4rem; color: var(--grey-800);"
-      : "font-size: 1.6rem; font-weight: 400; line-height: 2.4rem; color: var(--grey);"}
+      ? "font-size: 14px; font-weight: 400; line-height: 24px; color: var(--grey-800);"
+      : "font-size: 16px; font-weight: 400; line-height: 24px; color: var(--grey);"}
 `;

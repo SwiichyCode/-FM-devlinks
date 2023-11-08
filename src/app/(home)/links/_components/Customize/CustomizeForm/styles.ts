@@ -5,21 +5,21 @@ export const FormWrapper = styled.form``;
 export const LinksWrapper = styled.ul`
   ${({ theme }) => theme.mixins.flexColumn};
   height: 100%;
-  gap: 2.4rem;
-  margin-top: 2.4rem;
+  gap: 24px;
+  margin-top: 24px;
 
   &::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
     background: var(--grey-500);
-    border-radius: 0.8rem;
+    border-radius: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: var(--purple);
-    border-radius: 0.8rem;
+    border-radius: 8px;
   }
 `;
 
@@ -28,7 +28,7 @@ export const FormSave = styled.div`
   display: flex;
   justify-content: flex-end;
   height: max-content;
-  border-top: 0.1rem solid var(--grey-500);
-  padding: 2.4rem 4rem;
-  margin-top: 2.4rem;
+  border-top: 1px solid var(--grey-500);
+  padding: 24px 40px;
+  margin-top: 24px;
 `;

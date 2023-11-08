@@ -10,15 +10,15 @@ export const NotificationWrapper = styled.div`
   bottom: 40px;
   border-radius: var(--rounded);
   background-color: #333;
-  padding: 1.6rem 2.4rem;
-  gap: 0.8rem;
+  padding: 16px 24px;
+  gap: 8px;
 `;
 
 export const NotificationIcon = styled(Image)``;
 
 export const NotificationMessage = styled.p`
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 2.4rem;
+  line-height: 24px;
   color: #fafafa;
 `;
